@@ -92,70 +92,79 @@
             border-bottom: 2px solid #e0e0d8;
         }
 
-        .project {
-            margin-bottom: 35px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid #ececec;
+        .current-reads {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .current-reads strong {
+            color: #555;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .project-card {
+            background: #f0f0ea;
+            border: 1px solid #e0e0d8;
+            border-radius: 6px;
+            padding: 22px;
             transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
         }
 
-        .project:hover {
-            padding-left: 12px;
-            border-left: 3px solid #d5d5d0;
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #b8b8b0;
+            background: #e8e8e3;
         }
 
-        .project:last-child {
-            border-bottom: none;
-        }
-
-        .project-title {
-            font-size: 1.35rem;
+        .project-card-title {
+            font-size: 1.25rem;
             font-weight: 500;
             margin-bottom: 10px;
             color: #2c2c2c;
         }
 
-        .project-title a {
-            color: #2c2c2c;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .project-title a:hover {
-            color: #4a90e2;
-        }
-
-        .project-description {
+        .project-card-summary {
             color: #555;
-            margin-bottom: 10px;
-            line-height: 1.7;
+            font-size: 0.98rem;
+            line-height: 1.65;
+            margin-bottom: 12px;
         }
 
-        .project-details {
-            margin-left: 20px;
-            margin-top: 8px;
+        .project-card-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: auto;
+            padding-top: 10px;
         }
 
-        .project-details li {
-            margin-bottom: 6px;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .project-links {
-            margin-top: 10px;
-        }
-
-        .project-links a {
-            display: inline-block;
-            margin-right: 15px;
+        .project-card-links a {
             color: #4a90e2;
             text-decoration: none;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            position: relative;
+            z-index: 10;
         }
 
-        .project-links a:hover {
+        .project-card-links a:hover {
             color: #357abd;
             text-decoration: underline;
         }
@@ -245,6 +254,10 @@
                 font-size: 1.5rem;
             }
 
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
             .contact-links {
                 flex-direction: column;
                 align-items: center;
@@ -264,97 +277,93 @@
     <div class="container">
         <header>
             <h1>Joel Markapudi</h1>
-            <p class="subtitle">AI Enthusiast & Data Engineer | M.S. in Artificial Intelligence @ Northeastern University</p>
+            <p class="subtitle">Machine Learning & Data Engineer | M.S. in Artificial Intelligence @ Northeastern University</p>
             <p class="intro">
-                Machine learning and LLM engineer completing an M.S. in Artificial Intelligence at Northeastern University (GPA 3.9), with four years of experience as a Data Engineer building FP&A and operational reporting systems. My work bridges data engineering foundations with modern AI systems—specializing in <strong>retrieval architectures, LLM evaluation frameworks, and production ML pipelines</strong>. I focus on building end-to-end systems in <strong>deep learning, NLP, and computer vision</strong>, with particular strength in RAG systems, multi-agent workflows, and cost-optimized cloud deployments.
+                Machine learning and LLM engineering enthusiast completing an M.S. in Artificial Intelligence at Northeastern University (GPA 3.9), 
+                with four years of experience as a Data Engineer building FP&A and operational reporting systems. 
+                My work bridges production-grade data engineering with modern AI systems—covering <strong>retrieval/RAG architectures, 
+                LLM orchestration and evaluation, ML or Vision domain, and end-to-end MLOps</strong>. 
+                
+                I like working on full-stack ML systems, including but not limited to 3D human pose or Scene data, 
+                with a strong focus on <strong>deployable, cost-aware, and reproducible pipelines</strong>.
             </p>
+
+            <p class="current-reads">
+                <strong>Current reads:</strong>
+                Andrew Gordon Wilson's keynotes and lectures on Bayesian deep learning; 
+                gated attention for LLMs (NeurIPS 2025 best paper); 
+                Google's work on nested learning and self-modifying recurrent architectures; 
+                Efficient LLM training with memory and compute optimization.
+            </p>
+
             <nav>
                 <a href="#research">Research</a>
                 <a href="#other-works">Other Works</a>
                 <a href="#contact">Contact</a>
-                <a href="Resume_Joel_Markapudi.pdf" download style="background: #e8e8e3; font-weight: 500;">Resume ↓</a>
+                <a href="resume.pdf" download style="background: #e8e8e3; font-weight: 500;">Resume ↓</a>
             </nav>
         </header>
 
         <section id="research">
             <h2>Research & Academic Projects</h2>
 
-            <div class="project">
-                <div class="project-title">
-                    <a href="https://github.com/Finsights-MLOps/FinSights/blob/main/README.md" target="_blank">FinSights: Production-Grade Financial Intelligence System</a>
+            <div class="projects-grid">
+                <div class="project-card" onclick="window.location.href='finsights.html'">
+                    <div class="project-card-title">FinSights: Production-Grade Financial Intelligence System</div>
+                    <div class="project-card-summary">
+                        Hybrid RAG architecture with DuckDB stratified sampling and semantic retrieval. Processes 72M→1M sentences achieving $0.017/query cost with exact citation provenance.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/Finsights-MLOps/FinSights/blob/main/README.md" target="_blank" onclick="event.stopPropagation();">Documentation →</a>
+                    </div>
                 </div>
-                <div class="project-description">
-                    Hybrid dual-path architecture combining structured queries (DuckDB/SQL dimension tables) with semantic retrieval. Processes 72M→1M sentences via stratified sampling with temporal weighting across regulatory eras.
-                </div>
-                <ul class="project-details">
-                    <li><strong>Data Engineering Pipeline:</strong> DuckDB stratified sampling (30+ SQL scripts) with weighted multi-objective scoring, fuzzy-matched integrations, conditional temporal stratification</li>
-                    <li><strong>Advanced RAG Engineering:</strong> Sentence-level embeddings, multi-query expansion with window-hopping retrieval, citation provenance via document headers for exact traceability. Polars/Parquet logging, serverless-ready architecture</li>
-                    <li><strong>Cost Optimization:</strong> Achieves $0.017/query cost, no managed DB overhead ($0.05/month vs $70-700/month)</li>
-                </ul>
-                <div class="project-links">
-                    <a href="https://github.com/Finsights-MLOps/FinSights/blob/main/README.md" target="_blank">→ Full Documentation</a>
-                </div>
-            </div>
 
-            <div class="project">
-                <div class="project-title">
-                    <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation" target="_blank">Text-to-Pose Diffusion</a>
+                <div class="project-card" onclick="window.location.href='text-to-pose.html'">
+                    <div class="project-card-title">Text-to-Pose Diffusion</div>
+                    <div class="project-card-summary">
+                        CLIP-conditioned diffusion model with cross-attention for 3D pose generation. Hybrid CNN-Transformer architecture with anatomical constraint enforcement and kinematic chain validation.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/DESIGN_README.md" target="_blank" onclick="event.stopPropagation();">Design →</a>
+                        <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/RESEARCH_README.md" target="_blank" onclick="event.stopPropagation();">Report →</a>
+                    </div>
                 </div>
-                <div class="project-description">
-                    Built a CLIP-conditioned diffusion model with cross-attention and anatomical loss for 3D pose generation. Covers end-to-end motion/3D reasoning: pose representation, N-joint hierarchical mapping, kinematic chains, and pelvis–spine–extremity validation.
-                </div>
-                <ul class="project-details">
-                    <li><strong>Architecture:</strong> Cross-modal CNN–Transformer UNet integrating CLIP embeddings with cross-attention at multiple resolution levels; hierarchical semantic conditioning for body-part context and action understanding.</li>
-                    <li><strong>3D Reasoning:</strong> Biomechanical constraints including bone-length preservation, anatomical validation, and N-joint kinematic enforcement; dual-pass classifier-free guidance for sharper, text-faithful poses. Uses center-of-mass sanity checks to penalize physically implausible generations. </li>
-                    <li><strong>Engineering:</strong> Modular PyTorch pipeline, dynamic text–pose conditioning, dataset EDA with joint-mapping analysis, ablations over conditioning strength and noise schedules, pose visualization utilities for qualitative evaluation.</li>
-                </ul>
-                <div class="project-links">
-                    <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/DESIGN_README.md" target="_blank">→ Design Documentation</a>
-                    <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/RESEARCH_README.md" target="_blank">→ Research Report</a>
-                </div>
-            </div>
 
-            <div class="project">
-                <div class="project-title">
-                    <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330" target="_blank">Multi-View 3D Scene Analysis</a>
+                <div class="project-card" onclick="window.location.href='multiview-3d.html'">
+                    <div class="project-card-title">Multi-View 3D Scene Analysis</div>
+                    <div class="project-card-summary">
+                        10k+ LOC pipeline for multi-view scene reconstruction with pose-guided filtering, occlusion handling, and RANSAC validation on ETH3D dataset.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330/blob/main/IMPLEMENTATION_README.md" target="_blank" onclick="event.stopPropagation();">Implementation →</a>
+                    </div>
                 </div>
-                <div class="project-description">
-                    Built a Multi-view, Pose-guided correspondence system pipeline on ETH3D for scene understanding, pose-guided filtering, and correspondence analysis across cluttered views and occlusions.
-                </div>
-                <ul class="project-details">
-                    <li><strong>Geometry Core:</strong> Camera pose estimation, local feature extraction, descriptor matching, and RANSAC-based geometric verification with epipolar constraints and inlier-ratio scoring. </li>
-                    <li><strong>Multi-View Reasoning:</strong> Pose-guided filtering, occlusion-aware masking, and match-quality scoring to promote correspondences that are consistent across multiple cameras, not just pairwise.</li>
-                    <li><strong>Evaluation & Tooling:</strong> ETH3D-driven experiments with reprojection-error diagnostics, per-scene match metrics, and structured HDF5/JSON scene manifests for reproducible runs and downstream analysis.</li>
-                    <li><strong>GPU-Accelerated Pipeline:</strong> PyTorch-based preprocessing with LAB color transforms, CLAHE enhancement, and bilateral filtering; achieved 56K+ features per image and ~28% spatial coverage with strong match quality.</li>
-                </ul>
-                <div class="project-links">
-                    <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330/blob/main/IMPLEMENTATION_README.md" target="_blank">→ Implementation Flow</a>
-                </div>
-            </div>
 
-            <div class="project">
-                <div class="project-title">
-                    <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction" target="_blank">Protein Structure Prediction</a>
+                <div class="project-card" onclick="window.location.href='protein-prediction.html'">
+                    <div class="project-card-title">Protein Structure Prediction</div>
+                    <div class="project-card-summary">
+                        Implemented HMM, CRF, and BiLSTM architectures for secondary structure prediction. CRF model achieved 67% accuracy on CB513 benchmark using evolutionary features.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction/blob/main/Report%20-%20Protein%20Struct%20Prediction%20HMM%2C%20CRF%2C%20LSTM%2C%20ML.pdf" target="_blank" onclick="event.stopPropagation();">Report →</a>
+                    </div>
                 </div>
-                <div class="project-description">
-                    Implemented Hidden Markov Models, Conditional Random Fields, and BiLSTM architectures for secondary structure prediction. CRF model reached 67% accuracy on CB513 benchmark using evolutionary and contextual features.
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction/blob/main/Report%20-%20Protein%20Struct%20Prediction%20HMM%2C%20CRF%2C%20LSTM%2C%20ML.pdf" target="_blank">→ Full Report</a>
-                </div>
-            </div>
 
-            <div class="project">
-                <div class="project-title">SocrAItic Circle</div>
-                <div class="project-description">
-                    Multi-Agent Debate LLMs workflow, designed with multi-phase debate cycles, iterative refinement, YAML-driven orchestration, and judge modules for enhanced reasoning and logical consistency.
+                <div class="project-card" onclick="window.location.href='socraitic.html'">
+                    <div class="project-card-title">SocrAItic Circle</div>
+                    <div class="project-card-summary">
+                        Multi-agent LLM debate framework with multi-phase cycles, iterative refinement, and YAML-driven orchestration for enhanced reasoning and logical consistency evaluation.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/mjsushanth/Multi_Agent_LLM_Debater/blob/main/README.md" target="_blank" onclick="event.stopPropagation();">Project Repository →</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="project">
-                <div class="project-title">Artist Classification</div>
-                <div class="project-description">
-                    Compared SVM-SIFT-BoVW, Convolutional Autoencoders, Variational Autoencoders, and CNNs for artistic style classification. SVM with BoVW achieved 89% accuracy on 50-class dataset, demonstrating effectiveness of classical computer vision techniques.
+                <div class="project-card" onclick="window.location.href='artist-classification.html'">
+                    <div class="project-card-title">Artist Classification</div>
+                    <div class="project-card-summary">
+                        Comparative study of SVM-SIFT-BoVW, CAEs, VAEs, and CNNs for artistic style classification. Classical SVM approach achieved 89% accuracy on 50-class dataset.
+                    </div>
                 </div>
             </div>
         </section>

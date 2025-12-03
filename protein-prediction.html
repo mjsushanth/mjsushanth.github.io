@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protein Structure Prediction - Joel Markapudi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f0;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 50px 30px 40px 30px;
+            background: #fafaf5;
+            min-height: 100vh;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #4a90e2;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 18px;
+            color: #2c2c2c;
+            line-height: 1.3;
+        }
+
+        .project-overview {
+            color: #555;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0d8;
+            line-height: 1.7;
+        }
+
+        .highlights {
+            margin-top: 25px;
+        }
+
+        .highlights ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .highlights li {
+            margin-bottom: 16px;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .highlights li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #4a90e2;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        strong {
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        .external-links {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0d8;
+        }
+
+        .external-links h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #2c2c2c;
+        }
+
+        .external-links a {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .external-links a:hover {
+            color: #357abd;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 35px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        
+        <h1>Protein Structure Prediction</h1>
+        
+        <div class="project-overview">
+            Implemented Hidden Markov Models, Conditional Random Fields, and BiLSTM architectures for secondary structure prediction on CB513 benchmark (514 non-homologous proteins). CRF model achieved 67% accuracy through specialized β-sheet detection features and position-specific evolutionary information.
+        </div>
+
+        <div class="highlights">
+            <ul>
+                <li><strong>Multi-Architecture Comparison:</strong> Built and evaluated HMM with mixture-of-Gaussians emissions, discriminative CRF with enhanced feature engineering, SVM with 533-dimensional PSSM-based features (74.91% accuracy), and BiLSTM with bidirectional context encoding</li>
+                
+                <li><strong>Feature Engineering:</strong> Designed 39,900-dimensional feature space incorporating PSSM evolutionary conservation scores, position-specific amino acid profiles, and 22 specialized β-sheet interaction features capturing N→N+3 residue dependencies</li>
+                
+                <li><strong>CRF Implementation:</strong> Achieved balanced three-state classification (helix/sheet/coil distributions: 0.364/0.289/0.347) through discriminative optimization with biologically meaningful structural transition modeling without explicit enforcement mechanisms</li>
+                
+                <li><strong>Architectural Analysis:</strong> Documented fundamental limitations of generative HMM approach (state collapse despite adaptive balancing) versus discriminative CRF success, demonstrating that long-range structural dependencies require feature-driven rather than probabilistic independence assumptions</li>
+                
+                <li><strong>Evaluation Framework:</strong> Comprehensive metrics including structure-specific F1 scores (SVM helix F1: 0.9522), confusion matrix analysis, and comparative study revealing strong correlation between evolutionary conservation patterns and structural predictability across 514-sequence benchmark</li>
+            </ul>
+        </div>
+
+        <div class="external-links">
+            <h2>Project Resources</h2>
+            <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction/blob/main/Report%20-%20Protein%20Struct%20Prediction%20HMM%2C%20CRF%2C%20LSTM%2C%20ML.pdf" target="_blank">→ Full Report (PDF)</a>
+            <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction" target="_blank">→ GitHub Repository</a>
+        </div>
+    </div>
+</body>
+</html>

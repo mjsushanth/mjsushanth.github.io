@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Classification - Joel Markapudi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f0;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 50px 30px 40px 30px;
+            background: #fafaf5;
+            min-height: 100vh;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #4a90e2;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 18px;
+            color: #2c2c2c;
+            line-height: 1.3;
+        }
+
+        .project-overview {
+            color: #555;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0d8;
+            line-height: 1.7;
+        }
+
+        .highlights {
+            margin-top: 25px;
+        }
+
+        .highlights ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .highlights li {
+            margin-bottom: 16px;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .highlights li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #4a90e2;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        strong {
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        .external-links {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0d8;
+        }
+
+        .external-links h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #2c2c2c;
+        }
+
+        .external-links a {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .external-links a:hover {
+            color: #357abd;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 35px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        
+        <h1>Artist Classification</h1>
+        
+        <div class="project-overview">
+            Comparative analysis of SVM-SIFT-BoVW, Convolutional Autoencoders, Variational Autoencoders, and CNNs (ResNet-50, VGG-16) for artistic style classification on 8,774 artworks from 50 artists. Classical computer vision approach achieved 89.2% accuracy, demonstrating texture-based features outperform semantic understanding for art classification.
+        </div>
+
+        <div class="highlights">
+            <ul>
+                <li><strong>SVM-SIFT-BoVW Pipeline:</strong> Implemented Scale-Invariant Feature Transform for distinctive feature extraction, Bag of Visual Words model with K-means clustering (500 visual vocabulary clusters from 6,858 training images), and histogram-based image representation enabling fixed-length feature vectors for classification</li>
+                
+                <li><strong>Multi-Level Feature Engineering:</strong> Combined SIFT-based BoVW histograms capturing oriented gradient patterns with Local Binary Pattern descriptors (24 neighbors, radius 8) encoding brush strokes and surface textures, augmented with one-hot encoded categorical metadata (genre achieving 89.2% vs nationality 58.06% accuracy)</li>
+                
+                <li><strong>Classical vs Deep Learning Comparison:</strong> SVM approach (89.2% test accuracy, macro F1: 0.831) significantly outperformed deep architectures: ResNet-50 (58.64% on 11-artist subset), VGG-16 (54.69%), and Convolutional Autoencoders, revealing texture/brush-stroke patterns more discriminative than high-level semantic features for artistic style</li>
+                
+                <li><strong>Model Analysis & Insights:</strong> Identified that 19th century French artists with similar impressionist styles caused most misclassifications despite high overall performance (precision: 0.857, recall: 0.827), demonstrating model struggles with closely related artistic movements while maintaining robust performance across majority of 50 artist classes</li>
+                
+                <li><strong>Architecture Experimentation:</strong> Evaluated unsupervised feature learning via Convolutional Autoencoders with SMOTE balancing and inverse weighting across 2,660 images from 5 artists, concluding that supervised discriminative approaches with hand-crafted features significantly outperform unsupervised deep learning for low-volume artistic datasets</li>
+            </ul>
+        </div>
+
+        <div class="external-links">
+            <h2>Project Resources</h2>
+            <a href="https://github.com/mjsushanth" target="_blank">→ GitHub Repository</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-View 3D Scene Analysis - Joel Markapudi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f0;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 50px 30px 40px 30px;
+            background: #fafaf5;
+            min-height: 100vh;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #4a90e2;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 18px;
+            color: #2c2c2c;
+            line-height: 1.3;
+        }
+
+        .project-overview {
+            color: #555;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0d8;
+            line-height: 1.7;
+        }
+
+        .highlights {
+            margin-top: 25px;
+        }
+
+        .highlights ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .highlights li {
+            margin-bottom: 16px;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .highlights li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #4a90e2;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        strong {
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        .external-links {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0d8;
+        }
+
+        .external-links h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #2c2c2c;
+        }
+
+        .external-links a {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .external-links a:hover {
+            color: #357abd;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 35px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        
+        <h1>Multi-View 3D Scene Analysis on ETH3D</h1>
+        
+        <div class="project-overview">
+            10k+ LOC pipeline for pose-guided multi-view feature correspondence on the ETH3D dataset. Integrates camera pose estimation, feature matching, occlusion handling, and multi-view consistency checks to build robust correspondences across cluttered scenes and varying baselines, with explicit tooling for diagnostics and reproducible experiments.
+        </div>
+
+        <div class="highlights">
+            <ul>
+                <li><strong>Pose-Guided Correspondence System:</strong> Combines camera pose estimation with view-overlap analysis to select candidate view pairs, then uses local feature extraction and descriptor matching to seed correspondences that are geometry-aware rather than purely appearance-based.</li>
+
+                <li><strong>Geometric Core & Validation:</strong> Applies RANSAC-based geometric verification with epipolar constraints, inlier-ratio analysis, and per-pair reprojection statistics; integrates rejection stages for unstable matches and low-baseline configurations that are prone to degeneracies.</li>
+
+                <li><strong>Multi-View Reasoning & Occlusion Handling:</strong> Promotes tracks that remain consistent across multiple cameras (not just pairwise) via match-quality scoring, track-formation logic, and occlusion-aware masking, allowing the pipeline to reason about visibility and scene layout.</li>
+
+                <li><strong>GPU-Accelerated Preprocessing:</strong> Uses PyTorch to run LAB color-space transforms, CLAHE contrast enhancement, and bilateral filtering on the GPU; tuned to reach 56K+ features per image with ~28% spatial coverage and a 0.93 match-quality score on representative ETH3D scenes.</li>
+
+                <li><strong>Experiment Infrastructure & Manifests:</strong> Organizes per-scene experiments into structured HDF5 and JSON manifests capturing camera intrinsics, poses, feature maps, and match statistics, enabling reproducible runs, ablation studies, and downstream 3D reconstruction or SLAM-style analyses.</li>
+            </ul>
+        </div>
+
+        <div class="external-links">
+            <h2>Project Resources</h2>
+            <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330/blob/main/IMPLEMENTATION_README.md" target="_blank">→ Implementation Flow</a>
+            <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330" target="_blank">→ GitHub Repository</a>
+        </div>
+    </div>
+</body>
+</html>
