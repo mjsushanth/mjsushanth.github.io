@@ -304,9 +304,9 @@
                     Built a CLIP-conditioned diffusion model with cross-attention and anatomical loss for 3D pose generation. Covers end-to-end motion/3D reasoning: pose representation, N-joint hierarchical mapping, kinematic chains, and pelvis–spine–extremity validation.
                 </div>
                 <ul class="project-details">
-                    <li><strong>Architecture:</strong> Hybrid CNN–Transformer UNet with CLIP semantic encoding and projection, cross-attention between text and pose tokens, and dual-pass classifier-free guidance plus anatomical constraint enforcement.</li>
-                    <li><strong>3D Reasoning:</strong> Models skeletons as an N-joint kinematic tree with bone-length preservation, joint-limit constraints, and center-of-mass sanity checks to penalize physically implausible generations.</li>
-                    <li><strong>Engineering:</strong> Modular PyTorch training pipeline with config-driven experiments, pose visualization utilities, and ablations over conditioning strength, noise schedules, and guidance scales.</li>
+                    <li><strong>Architecture:</strong> Cross-modal CNN–Transformer UNet integrating CLIP embeddings with cross-attention at multiple resolution levels; hierarchical semantic conditioning for body-part context and action understanding.</li>
+                    <li><strong>3D Reasoning:</strong> Biomechanical constraints including bone-length preservation, anatomical validation, and N-joint kinematic enforcement; dual-pass classifier-free guidance for sharper, text-faithful poses. Uses center-of-mass sanity checks to penalize physically implausible generations. </li>
+                    <li><strong>Engineering:</strong> Modular PyTorch pipeline, dynamic text–pose conditioning, dataset EDA with joint-mapping analysis, ablations over conditioning strength and noise schedules, pose visualization utilities for qualitative evaluation.</li>
                 </ul>
                 <div class="project-links">
                     <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/DESIGN_README.md" target="_blank">→ Design Documentation</a>
@@ -319,12 +319,13 @@
                     <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330" target="_blank">Multi-View 3D Scene Analysis</a>
                 </div>
                 <div class="project-description">
-                    10k+ LOC multi-view pipeline on ETH3D for scene understanding, pose-guided filtering, and robust correspondence analysis across cluttered views and occlusions.
+                    Built a Multi-view, Pose-guided correspondence system pipeline on ETH3D for scene understanding, pose-guided filtering, and correspondence analysis across cluttered views and occlusions.
                 </div>
                 <ul class="project-details">
-                    <li><strong>Geometry Core:</strong> Local feature extraction, descriptor matching, and RANSAC-based geometric verification with epipolar constraints and inlier-ratio analysis for each view pair.</li>
+                    <li><strong>Geometry Core:</strong> Camera pose estimation, local feature extraction, descriptor matching, and RANSAC-based geometric verification with epipolar constraints and inlier-ratio scoring. </li>
                     <li><strong>Multi-View Reasoning:</strong> Pose-guided filtering, occlusion-aware masking, and match-quality scoring to promote correspondences that are consistent across multiple cameras, not just pairwise.</li>
                     <li><strong>Evaluation & Tooling:</strong> ETH3D-driven experiments with reprojection-error diagnostics, per-scene match metrics, and structured HDF5/JSON scene manifests for reproducible runs and downstream analysis.</li>
+                    <li><strong>GPU-Accelerated Pipeline:</strong> PyTorch-based preprocessing with LAB color transforms, CLAHE enhancement, and bilateral filtering; achieved 56K+ features per image and ~28% spatial coverage with strong match quality.</li>
                 </ul>
                 <div class="project-links">
                     <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330/blob/main/IMPLEMENTATION_README.md" target="_blank">→ Implementation Flow</a>
