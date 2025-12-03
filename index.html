@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joel M - AI/ML Portfolio</title>
+    <title>Joel Markapudi - AI/ML Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -21,13 +21,13 @@
         .container {
             max-width: 920px;
             margin: 0 auto;
-            padding: 60px 30px;
+            padding: 50px 30px 40px 30px;
             background: #fafaf5;
             min-height: 100vh;
         }
 
         header {
-            margin-bottom: 60px;
+            margin-bottom: 45px;
         }
 
         h1 {
@@ -41,51 +41,67 @@
             font-size: 1.15rem;
             color: #666;
             font-weight: 400;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .intro {
             font-size: 1.05rem;
             color: #555;
-            line-height: 1.7;
-            margin-top: 20px;
+            line-height: 1.75;
+            margin-top: 18px;
+            max-width: 850px;
         }
 
         nav {
-            margin: 35px 0 10px 0;
+            margin: 28px 0 8px 0;
             padding-bottom: 12px;
             border-bottom: 1px solid #d5d5d0;
+            display: flex;
+            gap: 12px;
         }
 
         nav a {
-            margin-right: 28px;
-            color: #666;
+            color: #555;
             text-decoration: none;
             font-size: 0.95rem;
-            transition: color 0.3s;
+            padding: 8px 18px;
+            border: 1px solid #d5d5d0;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: #fafaf5;
         }
 
         nav a:hover {
+            background: #e8e8e3;
+            border-color: #b8b8b0;
             color: #2c2c2c;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
         }
 
         section {
-            margin-bottom: 70px;
+            margin-bottom: 50px;
         }
 
         h2 {
             font-size: 1.75rem;
             font-weight: 400;
-            margin-bottom: 35px;
+            margin-bottom: 28px;
             color: #2c2c2c;
             padding-bottom: 10px;
             border-bottom: 2px solid #e0e0d8;
         }
 
         .project {
-            margin-bottom: 45px;
-            padding-bottom: 40px;
+            margin-bottom: 35px;
+            padding-bottom: 32px;
             border-bottom: 1px solid #ececec;
+            transition: all 0.3s ease;
+        }
+
+        .project:hover {
+            padding-left: 12px;
+            border-left: 3px solid #d5d5d0;
         }
 
         .project:last-child {
@@ -95,7 +111,7 @@
         .project-title {
             font-size: 1.35rem;
             font-weight: 500;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #2c2c2c;
         }
 
@@ -111,23 +127,23 @@
 
         .project-description {
             color: #555;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.7;
         }
 
         .project-details {
             margin-left: 20px;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .project-details li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #666;
             line-height: 1.6;
         }
 
         .project-links {
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         .project-links a {
@@ -144,34 +160,23 @@
             text-decoration: underline;
         }
 
-        .tag {
-            display: inline-block;
-            background: #e8e8e3;
-            color: #555;
-            padding: 4px 10px;
-            border-radius: 3px;
-            font-size: 0.85rem;
-            margin-right: 8px;
-            margin-top: 8px;
-        }
-
         .mini-projects {
             background: #f0f0ea;
-            padding: 25px;
+            padding: 22px;
             border-radius: 6px;
-            margin-top: 20px;
+            margin-top: 18px;
         }
 
         .mini-projects h3 {
             font-size: 1.2rem;
             font-weight: 500;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             color: #2c2c2c;
         }
 
         .mini-project {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
+            margin-bottom: 14px;
+            padding-bottom: 14px;
         }
 
         .mini-project:last-child {
@@ -182,7 +187,7 @@
         .mini-project-title {
             font-weight: 500;
             color: #2c2c2c;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .mini-project-desc {
@@ -192,8 +197,8 @@
         }
 
         footer {
-            margin-top: 70px;
-            padding-top: 30px;
+            margin-top: 50px;
+            padding-top: 25px;
             border-top: 1px solid #d5d5d0;
             text-align: center;
         }
@@ -201,8 +206,8 @@
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 18px;
         }
 
         .contact-links a {
@@ -214,18 +219,22 @@
             color: #555;
             text-decoration: none;
             border-radius: 5px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             font-size: 0.95rem;
+            border: 1px solid transparent;
         }
 
         .contact-links a:hover {
             background: #d8d8d3;
             color: #2c2c2c;
+            border-color: #b8b8b0;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 40px 20px;
+                padding: 35px 20px;
             }
 
             h1 {
@@ -241,9 +250,12 @@
                 align-items: center;
             }
 
-            nav a {
-                display: inline-block;
-                margin-bottom: 10px;
+            nav {
+                flex-wrap: wrap;
+            }
+
+            section {
+                margin-bottom: 40px;
             }
         }
     </style>
@@ -251,10 +263,10 @@
 <body>
     <div class="container">
         <header>
-            <h1>Joel M</h1>
+            <h1>Joel Markapudi</h1>
             <p class="subtitle">AI Enthusiast & Data Engineer | M.S. in Artificial Intelligence @ Northeastern University</p>
             <p class="intro">
-                I specialize in <strong>AI/ML research</strong>, <strong>enterprise-scale data engineering</strong>, and building systems in <strong>deep learning, NLP, and computer vision</strong>.
+                Machine learning and LLM engineer completing an M.S. in Artificial Intelligence at Northeastern University (GPA 3.9), with four years of experience as a Data Engineer building FP&A and operational reporting systems. My work bridges data engineering foundations with modern AI systems—specializing in <strong>retrieval architectures, LLM evaluation frameworks, and production ML pipelines</strong>. I focus on building end-to-end systems in <strong>deep learning, NLP, and computer vision</strong>, with particular strength in RAG systems, multi-agent workflows, and cost-optimized cloud deployments.
             </p>
             <nav>
                 <a href="#research">Research</a>
@@ -371,7 +383,7 @@
         </section>
 
         <footer id="contact">
-            <h2 style="border: none; text-align: center; font-size: 1.5rem; margin-bottom: 25px;">Connect with Me</h2>
+            <h2 style="border: none; text-align: center; font-size: 1.5rem; margin-bottom: 20px;">Connect with Me</h2>
             <div class="contact-links">
                 <a href="https://linkedin.com/in/joemjs/" target="_blank">
                     <span>LinkedIn</span>
