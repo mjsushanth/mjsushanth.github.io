@@ -318,6 +318,28 @@
             <h2>Research & Academic Projects</h2>
             <p class="section-hint">Click on each project card to explore more details!</p>
             <div class="projects-grid">
+                <div class="project-card" onclick="window.location.href='mlx-debate-lab.html'">
+                    <div class="project-card-title">mlx-debate-lab: Multi-Agent LLM Debate on Apple Silicon</div>
+                    <div class="project-card-summary">
+                        LangGraph + MCP debate system running entirely locally on 24GB unified memory against ~34GB of model weights. Nine documented failure modes found building a working reference implementation, no API calls.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/mjsushanth/mlx-debate-lab" target="_blank" onclick="event.stopPropagation();">Repository →</a>
+                        <a href="https://github.com/mjsushanth/mlx-debate-lab/blob/main/docs/LANDMINES.md" target="_blank" onclick="event.stopPropagation();">Landmines →</a>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="window.location.href='satellite-change-detection.html'">
+                    <div class="project-card-title">OSCD Sentinel-2 Satellite Change Detection</div>
+                    <div class="project-card-summary">
+                        Classical baselines vs. a 269k-parameter Siamese U-Net on Sentinel-2 bitemporal imagery, Apple Silicon/MPS, no CUDA. 1.6x F1 over the classical floor (0.378 vs 0.237), with leakage-free thresholding and four overturned claims documented in the open.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/mjsushanth/oscd-sentinel2-change-detection" target="_blank" onclick="event.stopPropagation();">Repository →</a>
+                        <a href="https://github.com/mjsushanth/oscd-sentinel2-change-detection/blob/main/docs/LANDMINES.md" target="_blank" onclick="event.stopPropagation();">Landmines →</a>
+                    </div>
+                </div>
+
                 <div class="project-card" onclick="window.location.href='finsights.html'">
                     <div class="project-card-title">FinSights: Production-Grade Financial Intelligence System</div>
                     <div class="project-card-summary">

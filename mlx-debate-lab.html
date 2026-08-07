@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mlx-debate-lab: Multi-Agent LLM Debate on Apple Silicon - Joel Markapudi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f0;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 50px 30px 40px 30px;
+            background: #fafaf5;
+            min-height: 100vh;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #4a90e2;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 18px;
+            color: #2c2c2c;
+            line-height: 1.3;
+        }
+
+        .project-overview {
+            color: #555;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0d8;
+            line-height: 1.7;
+        }
+
+        .highlights {
+            margin-top: 25px;
+        }
+
+        .highlights ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .highlights li {
+            margin-bottom: 16px;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .highlights li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #4a90e2;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        strong {
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        .external-links {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0d8;
+        }
+
+        .external-links h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #2c2c2c;
+        }
+
+        .external-links a {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .external-links a:hover {
+            color: #357abd;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 35px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+
+        <h1>mlx-debate-lab: Multi-Agent LLM Debate on Apple Silicon</h1>
+
+        <div class="project-overview">
+            Local multi-agent LLM debate system orchestrated with LangGraph and the Model Context Protocol, running entirely on Apple Silicon (24 GB unified memory) against ~34 GB of model weights with no API calls. Two models argue a motion across three rounds, grounded in evidence retrieved from a real IR corpus and scored by sixteen parallel judge workers. The primary contribution isn't debate quality — it's nine documented failure modes, each of which ran cleanly, returned a value, and was wrong.
+        </div>
+
+        <div class="highlights">
+            <ul>
+                <li><strong>Graph Orchestration:</strong> LangGraph state machine — 13 nodes, three conditional-edge patterns (gate, cycle, Send fan-out to 16 judge tasks), recursion limit derived rather than guessed (72 for 5 rounds), checkpoint resume proven against a forced crash</li>
+
+                <li><strong>MCP Protocol Layer:</strong> Two production servers, 9 tools and 7 resources, with stdio/HTTP transport equivalence proven live via raw curl — HTTP overhead measured at 1.5x, cold stdio subprocess at 194x</li>
+
+                <li><strong>MLX Memory Engineering:</strong> Phase-separated residency — debaters (17.2 GB), judges (16.6 GB), never co-resident — fits ~34 GB of weights in 24 GB of unified memory. Prompt caching and batch_generate were both measured and rejected (−5.2% TTFT; 3 failures across 2 architectures)</li>
+
+                <li><strong>Hybrid Evidence Retrieval:</strong> BM25, dense embeddings, and RRF fusion over a 14,195-document corpus, with nDCG@k, Recall@k, and MRR implemented from scratch. A compression step cuts ~8,262 retrieved tokens to ~150 before they reach a debater — hybrid retrieval lost to plain BM25 (0.6334 vs 0.6413 nDCG@10)</li>
+
+                <li><strong>Failure-Mode Instrumentation:</strong> Every generation is classified at the model boundary (EMPTY, TRUNCATED, MARKER_LEAK, PARSE_FAIL, DIMENSION_MISMATCH), full raw output retained. Caught 9 real defects this way — including an evidence path that ran cleanly while producing zero effect</li>
+
+                <li><strong>Experimental Rigor:</strong> 63 of 70 pre-registered acceptance gates passed. Ablations run at temperature 0 behind validity gates that void a run outright for identical transcript hashes across arms, or zero citations on an evidence-enabled run</li>
+
+                <li><strong>Engineering & Documentation:</strong> 8,481 lines, 89 tests, ruff-clean, 4 executed notebooks, 15 documentation guides, and a 26-entry decision log tagging each choice as forced or judgment</li>
+            </ul>
+        </div>
+
+        <div class="external-links">
+            <h2>Project Resources</h2>
+            <a href="https://github.com/mjsushanth/mlx-debate-lab" target="_blank">→ GitHub Repository</a>
+            <a href="https://github.com/mjsushanth/mlx-debate-lab/blob/main/docs/LANDMINES.md" target="_blank">→ The Nine Defects (LANDMINES.md)</a>
+            <a href="https://github.com/mjsushanth/mlx-debate-lab/blob/main/README.md" target="_blank">→ Full Documentation</a>
+        </div>
+    </div>
+</body>
+</html>

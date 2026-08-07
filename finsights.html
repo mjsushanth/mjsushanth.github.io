@@ -149,6 +149,14 @@
                 <li><strong>Production Infrastructure:</strong> AWS S3 Vectors, Bedrock LLM synthesis, Polars/Parquet logging pipeline, and serverless-ready three-tier architecture (FastAPI + Streamlit + ML orchestrator)</li>
                 
                 <li><strong>Cost Optimization:</strong> Approximated $0.05/month infrastructure, instead of expensive, managed vector databases, achieved through stratified sampling, metadata filter pushdown (50% query cost savings), and S3-native storage patterns</li>
+
+                <li><strong>Corpus Re-Embedding at Scale:</strong> Regrew the vector corpus 3x — 203K to 614K sentence embeddings across 25 companies and 20 report years — split across two embedding providers to dodge a token quota, verified equivalent before merging, for $2.21 against a $5 estimate</li>
+
+                <li><strong>Latency Instrumentation:</strong> Split the retrieval timer to find the real bottleneck, disproving a documented assumption that S3 was 90% of latency once variant generation measured slower (1,990ms vs 1,465ms); added response streaming to cut time-to-first-byte to 4.3ms and killed one planned optimization once the data didn't support it</li>
+
+                <li><strong>Production Deployment on AWS Fargate:</strong> Built the deployment pipeline for ARM64 Fargate, fixed the defect that broke the prior deployment, added one-command setup for a brand-new AWS account, and removed the load balancer and NAT gateway from the path — verified live at $0.014/query, scaling to zero cost when idle</li>
+
+                <li><strong>Measured Cost Economics:</strong> Replaced a guessed cost model with real AWS billing rates — $0.06/GB-month storage and $0.20/GB ingest for the vector store, $0.03238/vCPU-hour for compute — landing on a $0.29/month idle floor for the whole system, and retiring the old claim that ingest was free</li>
             </ul>
         </div>
 
