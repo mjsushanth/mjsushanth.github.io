@@ -117,6 +117,42 @@
             text-decoration: underline;
         }
 
+        .key-facts {
+            margin-top: 30px;
+            padding-top: 18px;
+            border-top: 1px dashed #d5d5d0;
+            font-size: 0.88rem;
+            color: #777;
+            line-height: 1.65;
+        }
+
+        .key-facts-label {
+            font-style: italic;
+            text-transform: lowercase;
+            letter-spacing: 0.04em;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .key-facts ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .key-facts li {
+            margin-bottom: 4px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .key-facts li:before {
+            content: "·";
+            position: absolute;
+            left: 2px;
+            color: #aaa;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 35px 20px;
@@ -147,6 +183,16 @@
                 <li><strong>Conditioning Analysis:</strong> Found that CLIP separates left from right poorly, yet 4,640 test captions show no spatial gap. Truncating captions to the first action dropped R-Precision from 0.8013 to 0.6563.</li>
             </ul>
         </div>
+        <div class="key-facts">
+            <p class="key-facts-label">technical details</p>
+            <ul>
+                <li>Spatial probe: caption pairs differing only by left vs right embed closer in CLIP than pairs differing by a comparable non-spatial word (Cohen's d 0.995, n = 40 per group), and 57.6% of 24,503 captions use spatial words</li>
+                <li>Evaluator check: reproduces the published R-Precision top-3 of 0.797 on real motions across five full-split runs</li>
+                <li>Seed noise: the control arm scored 0.2969 and 0.3438 R-Precision across two seeds, the same size as the arm-to-arm gap, and FID swung from 7.209 to 11.044 within one arm</li>
+                <li>Detection bound: separating the truncation effect from noise would need about 1,780 generated samples per arm per seed</li>
+            </ul>
+        </div>
+
         <div class="external-links">
             <h2>Project Resources</h2>
             <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/DESIGN_README.md" target="_blank">→ Design Documentation</a>

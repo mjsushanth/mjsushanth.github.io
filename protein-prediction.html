@@ -117,6 +117,42 @@
             text-decoration: underline;
         }
 
+        .key-facts {
+            margin-top: 30px;
+            padding-top: 18px;
+            border-top: 1px dashed #d5d5d0;
+            font-size: 0.88rem;
+            color: #777;
+            line-height: 1.65;
+        }
+
+        .key-facts-label {
+            font-style: italic;
+            text-transform: lowercase;
+            letter-spacing: 0.04em;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .key-facts ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .key-facts li {
+            margin-bottom: 4px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .key-facts li:before {
+            content: "·";
+            position: absolute;
+            left: 2px;
+            color: #aaa;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 35px 20px;
@@ -146,6 +182,16 @@
                 <li><strong>Evaluation Framework:</strong> Evaluated with structure-specific F1 scores (SVM helix F1: 0.9522) and confusion matrices. The comparison showed a strong link between evolutionary conservation patterns and structural predictability across the 514-sequence benchmark.</li>
             </ul>
         </div>
+        <div class="key-facts">
+            <p class="key-facts-label">technical details</p>
+            <ul>
+                <li>CRF per-class F1: helix 70.5%, sheet 63.7%, at 67.17% overall accuracy against the roughly 70% benchmark</li>
+                <li>CRF feature space: 258 dimensions per residue (45 base, 24 beta-sheet, 189 context from a 13-position window)</li>
+                <li>Learned transition stability: helix to helix 0.91, sheet to sheet 0.67, coil to coil 0.39</li>
+                <li>HMM collapse: coil probability drifted from 0.989 to 0.996 despite adaptive balance thresholds of 0.016 to 0.047</li>
+            </ul>
+        </div>
+
         <div class="external-links">
             <h2>Project Resources</h2>
             <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction/blob/main/Report%20-%20Protein%20Struct%20Prediction%20HMM%2C%20CRF%2C%20LSTM%2C%20ML.pdf" target="_blank">→ Full Report (PDF)</a>
