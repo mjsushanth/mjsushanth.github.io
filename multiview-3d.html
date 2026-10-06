@@ -135,26 +135,31 @@
         <h1>Multi-View 3D Scene Analysis on ETH3D</h1>
         
         <div class="project-overview">
-            10k+ LOC pipeline for pose-guided multi-view feature correspondence on the ETH3D dataset. Integrates camera pose estimation, feature matching, occlusion handling, and multi-view consistency checks to build robust correspondences across cluttered scenes and varying baselines, with explicit tooling for diagnostics and reproducible experiments.
+            10k+ LOC pipeline for pose-guided multi-view feature correspondence on the ETH3D dataset (scene, feature-track, and SfM analysis). Integrates camera pose estimation, feature matching, occlusion handling, and multi-view consistency checks to build robust correspondences across cluttered scenes and varying baselines, with explicit tooling for diagnostics and reproducible experiments.
         </div>
 
         <div class="highlights">
             <ul>
-                <li><strong>Pose-Guided Correspondence System:</strong> Combines camera pose estimation with view-overlap analysis to select candidate view pairs, then uses local feature extraction and descriptor matching to seed correspondences that are geometry-aware rather than purely appearance-based.</li>
+                <li><strong>Pose-Guided Correspondence:</strong> Camera poses and view-overlap analysis gate candidate view pairs before matching; 1.0M+ SIFT features across 25.7MP views, matched with a FLANN KD-tree and Lowe ratio test</li>
 
-                <li><strong>Geometric Core & Validation:</strong> Applies RANSAC-based geometric verification with epipolar constraints, inlier-ratio analysis, and per-pair reprojection statistics; integrates rejection stages for unstable matches and low-baseline configurations that are prone to degeneracies.</li>
+                <li><strong>Geometric Validation:</strong> RANSAC fundamental-matrix verification with epipolar constraints, inlier-ratio analysis, and rejection stages for unstable matches and low-baseline pairs prone to degeneracies</li>
 
-                <li><strong>Multi-View Reasoning & Occlusion Handling:</strong> Promotes tracks that remain consistent across multiple cameras (not just pairwise) via match-quality scoring, track-formation logic, and occlusion-aware masking, allowing the pipeline to reason about visibility and scene layout.</li>
+                <li><strong>Multi-View Tracks & Occlusion Handling:</strong> Matches promoted into 438 multi-view tracks that stay consistent across several cameras, using match-quality scoring, track-formation logic, and occlusion-aware masking</li>
 
-                <li><strong>GPU-Accelerated Preprocessing:</strong> Uses PyTorch to run LAB color-space transforms, CLAHE contrast enhancement, and bilateral filtering on the GPU; tuned to reach 56K+ features per image with ~28% spatial coverage and a 0.93 match-quality score on representative ETH3D scenes.</li>
+                <li><strong>COLMAP Integration:</strong> Custom keypoints, descriptors, and two-view geometry written into a COLMAP database, so its incremental mapper consumed these correspondences without re-extraction</li>
 
-                <li><strong>Experiment Infrastructure & Manifests:</strong> Organizes per-scene experiments into structured HDF5 and JSON manifests capturing camera intrinsics, poses, feature maps, and match statistics, enabling reproducible runs, ablation studies, and downstream 3D reconstruction or SLAM-style analyses.</li>
+                <li><strong>GPU-Accelerated Preprocessing:</strong> PyTorch LAB color transforms, CLAHE, and bilateral filtering on the GPU; reaches 56K+ features per image with ~28% spatial coverage and a 0.93 match-quality score on representative ETH3D scenes</li>
+
+                <li><strong>Experiment Infrastructure:</strong> HDF5 and JSON artifact versioning per scene, capturing camera intrinsics, poses, feature maps, and match statistics for reproducible runs and ablations</li>
+
+                <li><strong>Scope and Depth:</strong> An intensive build that went deep on correspondence, feature-track, and SfM-readiness analysis, carrying the pipeline through to COLMAP's mapper rather than a complete reconstruction</li>
             </ul>
         </div>
 
         <div class="external-links">
             <h2>Project Resources</h2>
             <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330/blob/main/IMPLEMENTATION_README.md" target="_blank">→ Implementation Flow</a>
+            <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330/blob/main/Multi-View%20Scene%20Correspondence%20-%20Report.pdf" target="_blank">→ Full Report (PDF)</a>
             <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330" target="_blank">→ GitHub Repository</a>
         </div>
     </div>

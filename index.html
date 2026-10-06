@@ -280,7 +280,7 @@
                 with four years of experience as a Data Engineer building FP&A and operational reporting systems.
                 My work bridges production-grade data engineering with modern AI systems—RAG and <strong>multimodal retrieval</strong>,
                 multi-agent LLM orchestration with <strong>LangGraph and MCP</strong>, memory-constrained local inference on Apple Silicon, and computer vision
-                spanning pose-aware multi-view scene analysis to <strong>satellite change detection</strong>.
+                spanning <strong>text-to-pose diffusion</strong> and pose-aware multi-view scene analysis.
 
                 I like building full-stack ML systems end-to-end,
                 with a strong focus on deployable, cost-aware, and reproducible pipelines.
@@ -292,7 +292,7 @@
                 <a href="#other-works">Other Works</a>
                 <a href="#contact">Contact</a>
                 <a href="https://github.com/mjsushanth" target="_blank">GitHub</a>
-                <a href="Joel Markapudi - Resume.pdf" download style="background: #e8e8e3; font-weight: 500;">Resume ↓</a>
+                <!-- Resume link temporarily hidden: <a href="Joel Markapudi - Resume.pdf" download style="background: #e8e8e3; font-weight: 500;">Resume ↓</a> -->
             </nav>
 
         </header>
@@ -301,69 +301,58 @@
             <h2>Research & Academic Projects</h2>
             <p class="section-hint">Click on each project card to explore more details!</p>
             <div class="projects-grid">
-                <div class="project-card" onclick="window.location.href='mlx-debate-lab.html'">
-                    <div class="project-card-title">mlx-debate-lab: Multi-Agent LLM Debate on Apple Silicon</div>
-                    <div class="project-card-summary">
-                        LangGraph + MCP debate system running entirely locally on 24GB unified memory against ~34GB of model weights. Nine documented failure modes found building a working reference implementation, no API calls.
-                    </div>
-                    <div class="project-card-links">
-                        <a href="https://github.com/mjsushanth/mlx-debate-lab" target="_blank" onclick="event.stopPropagation();">Repository →</a>
-                        <a href="https://github.com/mjsushanth/mlx-debate-lab/blob/main/docs/LANDMINES.md" target="_blank" onclick="event.stopPropagation();">Landmines →</a>
-                    </div>
-                </div>
-
-                <div class="project-card" onclick="window.location.href='satellite-change-detection.html'">
-                    <div class="project-card-title">OSCD Sentinel-2 Satellite Change Detection</div>
-                    <div class="project-card-summary">
-                        Classical baselines vs. a 269k-parameter Siamese U-Net on Sentinel-2 bitemporal imagery, Apple Silicon/MPS, no CUDA. 1.6x F1 over the classical floor (0.378 vs 0.237), with leakage-free thresholding and four overturned claims documented in the open.
-                    </div>
-                    <div class="project-card-links">
-                        <a href="https://github.com/mjsushanth/oscd-sentinel2-change-detection" target="_blank" onclick="event.stopPropagation();">Repository →</a>
-                        <a href="https://github.com/mjsushanth/oscd-sentinel2-change-detection/blob/main/docs/LANDMINES.md" target="_blank" onclick="event.stopPropagation();">Landmines →</a>
-                    </div>
-                </div>
-
                 <div class="project-card" onclick="window.location.href='finsights.html'">
                     <div class="project-card-title">FinSights: Production-Grade Financial Intelligence System</div>
                     <div class="project-card-summary">
-                        Hybrid RAG architecture with DuckDB stratified sampling and semantic retrieval. Processes 72M→1M sentences achieving $0.017/query cost with exact citation provenance.
+                        Hybrid RAG over SEC 10-K filings: structured KPI lookup plus semantic search across 614K sentence embeddings, streamed from AWS Fargate at $0.014 per query with answers cited to exact filing sentences.
                     </div>
                     <div class="project-card-links">
                         <a href="https://github.com/Finsights-MLOps/FinSights/blob/main/README.md" target="_blank" onclick="event.stopPropagation();">Documentation →</a>
+                        <a href="https://github.com/Finsights-MLOps/FinSights" target="_blank" onclick="event.stopPropagation();">Repository →</a>
                     </div>
                 </div>
 
                 <div class="project-card" onclick="window.location.href='text-to-pose.html'">
-                    <div class="project-card-title">Text-to-Pose Diffusion</div>
+                    <div class="project-card-title">Text-to-Pose: CLIP-Conditioned Diffusion for 3D Human Pose</div>
                     <div class="project-card-summary">
-                        CLIP-conditioned diffusion model with cross-attention for 3D pose generation. Hybrid CNN-Transformer architecture with anatomical constraint enforcement and kinematic chain validation.
+                        CLIP-conditioned diffusion model that generates 3D human skeletons from captions, paired with a retrieval-based evaluation layer that reproduces a published R-Precision of 0.797 and a conditioning analysis of CLIP's left/right handling.
                     </div>
                     <div class="project-card-links">
-                        <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/DESIGN_README.md" target="_blank" onclick="event.stopPropagation();">Design →</a>
-                        <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/RESEARCH_README.md" target="_blank" onclick="event.stopPropagation();">Report →</a>
+                        <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation" target="_blank" onclick="event.stopPropagation();">Model Repository →</a>
+                        <a href="https://github.com/mjsushanth/T2P-motion-gen-redo" target="_blank" onclick="event.stopPropagation();">Evaluation Repository →</a>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="window.location.href='socraitic.html'">
+                    <div class="project-card-title">SocrAItic Circle: Multi-Agent LLM Debate & Evaluation</div>
+                    <div class="project-card-summary">
+                        Multi-agent LLM debate framework with theory-grounded seven-dimension judging, rebuilt as a local LangGraph and MCP system with hybrid retrieval grounding and instrumentation that caught nine silent defects.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/mjsushanth/Multi_Agent_LLM_Debater" target="_blank" onclick="event.stopPropagation();">Debater Repository →</a>
+                        <a href="https://github.com/mjsushanth/mlx-debate-lab" target="_blank" onclick="event.stopPropagation();">mlx-debate-lab Repository →</a>
                     </div>
                 </div>
 
                 <div class="project-card" onclick="window.location.href='multiview-3d.html'">
                     <div class="project-card-title">Multi-View 3D Scene Analysis</div>
                     <div class="project-card-summary">
-                        10k+ LOC pipeline for multi-view scene reconstruction with pose-guided filtering, occlusion handling, and RANSAC validation on ETH3D dataset.
+                        10k+ LOC pipeline for multi-view scene reconstruction (scene, feature-track, and SfM analysis) with pose-guided filtering, occlusion handling, and RANSAC validation on ETH3D dataset.
                     </div>
                     <div class="project-card-links">
                         <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330/blob/main/IMPLEMENTATION_README.md" target="_blank" onclick="event.stopPropagation();">Implementation →</a>
+                        <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330/blob/main/Multi-View%20Scene%20Correspondence%20-%20Report.pdf" target="_blank" onclick="event.stopPropagation();">Report →</a>
                     </div>
                 </div>
-                    <!-- Featured project card for Late-interaction -->
-                <div class="projects-grid">
-                    <div class="project-card" onclick="window.location.href='late-interaction.html'">
-                        <div class="project-card-title">Vision-Language Late-Interaction Retrieval</div>
-                        <div class="project-card-summary">
-                            ColBERT-style ViT+CLIP system with LoRA parameter-efficient fine-tuning. MaxSim token→patch alignment achieving 38% InfoNCE loss reduction and 100% retrieval accuracy on Flickr8k.
-                        </div>
-                        <div class="project-card-links">
-                            <a href="https://github.com/mjsushanth/mlops-labs-portfolio/tree/main/Late_Interaction_MVR_PEFT_LoRA" target="_blank" onclick="event.stopPropagation();">Repository →</a>
-                            <a href="https://github.com/mjsushanth/mlops-labs-portfolio/blob/main/Late_Interaction_MVR_PEFT_LoRA/notebooks/01_MaxSimMVR_ViT_LoRA_Lab.ipynb" target="_blank" onclick="event.stopPropagation();">Notebook →</a>
-                        </div>
+
+                <div class="project-card" onclick="window.location.href='late-interaction.html'">
+                    <div class="project-card-title">Vision-Language Late-Interaction Retrieval</div>
+                    <div class="project-card-summary">
+                        ColBERT-style ViT+CLIP system with LoRA parameter-efficient fine-tuning. MaxSim token→patch alignment achieving 38% InfoNCE loss reduction and 100% retrieval accuracy on Flickr8k.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/mjsushanth/mlops-labs-portfolio/tree/main/Late_Interaction_MVR_PEFT_LoRA" target="_blank" onclick="event.stopPropagation();">Repository →</a>
+                        <a href="https://github.com/mjsushanth/mlops-labs-portfolio/blob/main/Late_Interaction_MVR_PEFT_LoRA/notebooks/01_MaxSimMVR_ViT_LoRA_Lab.ipynb" target="_blank" onclick="event.stopPropagation();">Notebook →</a>
                     </div>
                 </div>
 
@@ -374,16 +363,6 @@
                     </div>
                     <div class="project-card-links">
                         <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction/blob/main/Report%20-%20Protein%20Struct%20Prediction%20HMM%2C%20CRF%2C%20LSTM%2C%20ML.pdf" target="_blank" onclick="event.stopPropagation();">Report →</a>
-                    </div>
-                </div>
-
-                <div class="project-card" onclick="window.location.href='socraitic.html'">
-                    <div class="project-card-title">SocrAItic Circle</div>
-                    <div class="project-card-summary">
-                        Multi-agent LLM debate framework with multi-phase cycles, iterative refinement, and YAML-driven orchestration for enhanced reasoning and logical consistency evaluation.
-                    </div>
-                    <div class="project-card-links">
-                        <a href="https://github.com/mjsushanth/Multi_Agent_LLM_Debater/blob/main/README.md" target="_blank" onclick="event.stopPropagation();">Project Repository →</a>
                     </div>
                 </div>
 
@@ -401,20 +380,20 @@
             <h2>Professional Experience</h2>
 
             <div class="projects-grid">
-                <div class="project-card" onclick="window.location.href='fpa-reporting.html'">
-                    <div class="project-card-title">FP&A and SG&A Reporting</div>
+                <div class="project-card" onclick="window.location.href='data-engineering.html'">
+                    <div class="project-card-title">Data Platform & Analytics Engineering</div>
                     <div class="project-card-summary">
-                        Led BI delivery for finance and operations stakeholders. Built scalable ETL pipelines and Power BI models supporting 11+ programs. Shipped 25+ dashboards covering 500+ metrics, automated workflows cutting 70+ hours/month, and implemented CI/CD reducing deployment time 50%.
+                        Built the enterprise data warehouse (40+ star-schema tables), entity resolution at 88% accuracy across six systems, and 25+ Power BI dashboards delivering 300+ KPIs, saving 70+ hours a month and cutting deployment time 50% with CI/CD.
                     </div>
                     <div class="project-card-links">
-                        <span style="color: #666; font-size: 0.9rem;">Innova Solutions • Mar 2020 – Nov 2023</span>
+                        <span style="color: #666; font-size: 0.9rem;">Innova Solutions • Dec 2019 – Nov 2023</span>
                     </div>
                 </div>
 
-                <div class="project-card" onclick="window.location.href='operational-reporting.html'">
-                    <div class="project-card-title">Operational Reporting & Data Warehouse</div>
+                <div class="project-card" onclick="window.location.href='financial-ml.html'">
+                    <div class="project-card-title">Financial Machine Learning</div>
                     <div class="project-card-summary">
-                        Architected enterprise data warehouse integrating Bullhorn/HGC/JobDiva/Oracle EBS with 25+ PL/SQL procedures across 40+ star-schema tables. Engineered entity resolution achieving 88% accuracy. Delivered dashboards serving 300+ KPIs with forecasting and executive analytics.
+                        Production ML for finance: an attrition hazard model lifting AUC from 0.56 to 0.71, quantile rate guidance, collections and payment-timing models, and anomaly detection that surfaced $37.17M in revenue against near-zero pay.
                     </div>
                     <div class="project-card-links">
                         <span style="color: #666; font-size: 0.9rem;">Innova Solutions • May 2022 – Nov 2023</span>
@@ -432,11 +411,43 @@
                     <h3>Additional Labs & Experiments</h3>
                     
                     <div class="mini-project">
+                        <div class="mini-project-title">OSCD Sentinel-2 Satellite Change Detection</div>
+                        <div class="mini-project-desc">
+                            Side project pursued in depth for learning: remote sensing from first principles, classical baselines vs a Siamese U-Net, reaching ~1.6x F1 over the classical floor.
+                            <a href="satellite-change-detection.html" style="color: #4a90e2; text-decoration: none;"> → Project Page</a> |
+                            <a href="https://github.com/mjsushanth/oscd-sentinel2-change-detection" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
+                        </div>
+                    </div>
+
+                    <div class="mini-project">
+                        <div class="mini-project-title">Airflow, Docker and Qdrant RAG Ingestion Lab</div>
+                        <div class="mini-project-desc">
+                            Multi-service Docker Compose stack running a 5-task Airflow DAG into Qdrant, plus a parquet sharding pass that compressed 44GB of files into a 1.5GB, 71M-row table.
+                            <a href="https://github.com/mjsushanth/mlops-labs-portfolio/tree/main/Airflow_Docker_VDB_Lab" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
+                        </div>
+                    </div>
+
+                    <div class="mini-project">
+                        <div class="mini-project-title">DNA Pattern Matching: EPMSPP and Ukkonen Suffix Trees</div>
+                        <div class="mini-project-desc">
+                            Java implementations of EPMSPP and Ukkonen's suffix tree, benchmarked against KMP, Boyer-Moore, Rabin-Karp, and Aho-Corasick on DNA sequences up to 100M base pairs.
+                            <a href="https://github.com/mjsushanth/Pattern-Matching-With-EPMSPP-Ukkonen-Algorithms" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
+                        </div>
+                    </div>
+
+                    <div class="mini-project">
+                        <div class="mini-project-title">ML, DL and CV Learning Experiments</div>
+                        <div class="mini-project-desc">
+                            Long-running practice repo with from-scratch Transformer reconstruction labs (encoder, decoder-only, encoder-decoder, ViT) in MLX and PyTorch, plus LangGraph agent fundamentals.
+                            <a href="https://github.com/mjsushanth/ml-dl-cv-learning-exp" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
+                        </div>
+                    </div>
+
+                    <div class="mini-project">
                         <div class="mini-project-title">ML-Serving with GitHub CI/CD and AWS Lambda</div>
                         <div class="mini-project-desc">
                             End-to-end ML deployment workflow using GitHub Actions, AWS Lambda, and SAM Infrastructure for serverless model serving.
-                            <a href="https://github.com/mjsushanth/mlops-labs-portfolio/tree/main/CICD_ML_Infr_Lambda" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a> |
-                            <a href="https://github.com/mjsushanth/Study_Notes_Obsd/blob/main/ML%20Ops%20Notes/Study%20-%20AWS%2001%20CICD%2C%20Lambda%20etc..md" target="_blank" style="color: #4a90e2; text-decoration: none;"> Study Notes</a>
+                            <a href="https://github.com/mjsushanth/mlops-labs-portfolio/tree/main/CICD_ML_Infr_Lambda" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
                         </div>
                     </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FP&A and SG&A Reporting - Joel Markapudi</title>
+    <title>Financial Machine Learning - Joel Markapudi</title>
     <style>
         * {
             margin: 0;
@@ -116,27 +116,29 @@
     <div class="container">
         <a href="index.html" class="back-link">← Back to Portfolio</a>
         
-        <h1>FP&A and SG&A Reporting</h1>
-        <div class="role-info">Data Engineer & BI Developer • Innova Solutions</div>
-        <div class="date-range">March 2020 – November 2023</div>
-        
+        <h1>Financial Machine Learning</h1>
+        <div class="role-info">AI/ML Engineer • Innova Solutions</div>
+        <div class="date-range">May 2022 – November 2023</div>
+
         <div class="project-overview">
-            Led end-to-end BI delivery for finance and operations stakeholders across multiple business units, building scalable ETL pipelines and Power BI models supporting 11+ programs including Producer Commission, QBR dashboards, DSO Reports, Hiring Metrics, and SG&A reporting. Shipped 25+ dashboards covering 500+ metrics while implementing CI/CD workflows that reduced deployment time by 50%.
+            Built production ML for finance and operations at Innova Solutions, covering attrition, collections, payment timing, rate guidance and anomaly detection. Models were developed in Python with XGBoost, scikit-learn, PyTorch and Optuna on governed, point-in-time datasets.
         </div>
 
         <div class="highlights">
             <ul>
-                <li><strong>Stakeholder Engagement & Delivery:</strong> Led BI delivery for non-technical finance and operations stakeholders across multiple business units, translating complex business requirements into actionable analytics solutions</li>
-                
-                <li><strong>Scalable Data Infrastructure:</strong> Built scalable ETL pipelines using Talend and PL/SQL alongside Power BI models supporting 11+ programs including Producer Commission, QBR dashboards, DSO Reports, Hiring Metrics, and SG&A reporting</li>
-                
-                <li><strong>Production Dashboards & Automation:</strong> Shipped 25+ dashboards covering 500+ metrics. Automated margin and audit workflows, cutting 70+ hours per month of manual Excel work. Implemented CI/CD upgrades across projects that reduced deployment time by 50%</li>
-                
-                <li><strong>Advanced Analytics Development:</strong> Developed forecasting logic for YTD actuals and projections using advanced DAX with multi-level attribution, enabling accurate financial planning and variance analysis</li>
-                
-                <li><strong>Custom Business Logic:</strong> Designed dynamic eligibility engine with multi-factor scoring (GP projections, new placements, total starts) and threshold-based qualification logic for margin-based ranking dashboard, directly supporting executive compensation decisions</li>
-                
-                <li><strong>Cross-Functional Leadership:</strong> Partnered with data science and business teams on analytics improvements. Conducted 35+ interviews and mentored sub-teams of 2–4 to accelerate delivery. Earned the Innova Idol Award for being a top performer</li>
+                <li><strong>Governed ML Pipelines:</strong> Designed and validated ML pipelines for assignment attrition, AR/UBR collections, invoice payment timing and financial risk, with point-in-time features, leakage controls, traceability, retraining and reliability checks built in</li>
+
+                <li><strong>Attrition Hazard Model:</strong> Modeled assignment attrition as a discrete-time XGBoost hazard model, improving two-month AUC from 0.56 to 0.71 for redeployment planning</li>
+
+                <li><strong>Probability Calibration:</strong> Applied isotonic calibration so attrition scores behave as usable probability estimates, supporting redeployment analysis instead of ranking alone</li>
+
+                <li><strong>Rate and Margin Guidance:</strong> Developed an XGBoost quantile regression for rate and margin guidance, cutting bill-rate error from $6.20/hr to $3.65/hr at 81.2% coverage against an 80% prediction-interval target</li>
+
+                <li><strong>Late-Payment Classifier:</strong> Built a collections late-payment classifier from monthly accounts-receivable snapshots for AR/UBR collections, reducing late-payment probability error by 32% with point-in-time features</li>
+
+                <li><strong>Cash-Timing Hazard Model:</strong> Built a cash-timing hazard model on the same monthly AR snapshots, reaching 0.7958 AUC for invoice payment timing</li>
+
+                <li><strong>Anomaly Detection:</strong> Developed anomaly detection on expenditure and assignment data using deterministic controls, Isolation Forest and autoencoders, surfacing 45,685 lines representing $37.17M in revenue against near-zero pay</li>
             </ul>
         </div>
     </div>

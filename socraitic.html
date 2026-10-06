@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SocrAItic Circle - Joel Markapudi</title>
+    <title>SocrAItic Circle: Multi-Agent LLM Debate & Evaluation - Joel Markapudi</title>
     <style>
         * {
             margin: 0;
@@ -131,30 +131,44 @@
 <body>
     <div class="container">
         <a href="index.html" class="back-link">← Back to Portfolio</a>
-        
-        <h1>SocrAItic Circle</h1>
-        
+
+        <h1>SocrAItic Circle: Multi-Agent LLM Debate & Evaluation</h1>
+
         <div class="project-overview">
-            Multi-agent LLM debate framework implementing structured adversarial interaction through three-phase cycles (preparation, rebuttal, evaluation) with theory-informed judge modules. Achieved measurable improvements in argument quality: 37% logical consistency, 16% factual accuracy, 19% rhetorical effectiveness, 44% strategic merit.
+            A multi-agent LLM debate framework with structured preparation, rebuttal and evaluation phases, scored by theory-informed judge modules that improved argument quality by 37% on logical consistency, 16% on factual accuracy, 19% on rhetorical effectiveness and 44% on strategic merit. It was then rebuilt as a fully local LangGraph and MCP system with hybrid-retrieval evidence grounding and failure-mode instrumentation that documented nine silent defects.
         </div>
 
         <div class="highlights">
             <ul>
-                <li><strong>Adversarial Preparation Pipeline:</strong> Implemented invisible preparation phase enabling agents to perform evidence checking, argument mapping, and weakness anticipation before visible debate rounds, mirroring human debater research workflows with persistent memory architecture</li>
-                
-                <li><strong>Seven-Dimensional Judge Framework:</strong> Designed specialized evaluation system grounded in argumentation theory (Toulmin's Model, Pragma-Dialectical Theory, Elaboration Likelihood Model) with weighted dimensions: Logical Consistency (0.25), Factual Accuracy (0.20), Rhetorical Effectiveness (0.15), Strategic Merit (0.15), Ethical Conduct (0.10), Belief-Shift Potential (0.10), Audience Engagement (0.05)</li>
-                
-                <li><strong>YAML-Driven Orchestration:</strong> Built modular prompt management system separating debate logic from implementation, enabling rapid experimentation with different theoretical frameworks and phase-specific guidance without code modification, achieving 15-20x faster iteration cycles</li>
-                
-                <li><strong>Structured Multi-Phase Architecture:</strong> Orchestrated debate flow with preparation (strategic evidence gathering), adversarial critique mechanisms (targeted counterargument deployment), and meta-consensus evaluation aggregating diverse judge perspectives through weighted multi-dimensional optimization</li>
-                
-                <li><strong>Ollama Local Deployment:</strong> Configured local LLM infrastructure with heterogeneous model support (Mixtral, DeepSeek R1, Phi4, Llama 3.1), implementing hierarchical storage for debate histories, experiment configurations, and prompt versioning for reproducible research workflows</li>
+                <li><strong>Adversarial Preparation:</strong> An invisible preparation phase lets agents check evidence, map arguments and anticipate weaknesses before visible rounds, backed by persistent memory that mirrors how human debaters research</li>
+
+                <li><strong>Seven-Dimension Judges:</strong> Judge modules grounded in Toulmin's Model, Pragma-Dialectical Theory and the Elaboration Likelihood Model score seven weighted dimensions, from logical consistency (0.25) down to audience engagement (0.05)</li>
+
+                <li><strong>YAML Orchestration:</strong> Prompts and phase guidance live in YAML, separate from code, so theoretical frameworks can be swapped without code changes, giving 15-20x faster iteration</li>
+
+                <li><strong>Multi-Phase Debate Flow:</strong> Preparation, targeted adversarial rebuttal and meta-consensus evaluation, with the judges' diverse perspectives aggregated through weighted multi-dimensional scoring</li>
+
+                <li><strong>Ollama Local Deployment:</strong> Heterogeneous local models (Mixtral, DeepSeek R1, Phi4, Llama 3.1) with hierarchical storage for debate histories, experiment configs and prompt versions</li>
+            </ul>
+
+            <ul style="margin-top: 30px;">
+                <li><strong>Graph Orchestration:</strong> LangGraph state machine with 13 nodes and gate, cycle and Send fan-out patterns feeding 16 parallel judge tasks, a derived recursion limit (72 for 5 rounds) and checkpoint resume proven against a forced crash</li>
+
+                <li><strong>MCP Protocol Layer:</strong> Two servers exposing 9 tools and 7 resources, with stdio and HTTP transport equivalence proven live, HTTP overhead measured at 1.5x and a cold stdio subprocess at 194x</li>
+
+                <li><strong>MLX Memory Residency:</strong> Debaters (17.2 GB) and judges (16.6 GB) are never co-resident, fitting ~34 GB of weights in 24 GB unified memory, while prompt caching (-5.2% TTFT) and batch_generate (3 failures across 2 architectures) were measured and rejected</li>
+
+                <li><strong>Hybrid Evidence Retrieval:</strong> BM25, dense embeddings and RRF fusion over 14,195 documents, compressing ~8,262 retrieved tokens to ~150 per debater, where hybrid retrieval lost to plain BM25 (0.6334 vs 0.6413 nDCG@10)</li>
+
+                <li><strong>Failure-Mode Instrumentation:</strong> Every generation is classified at the model boundary (EMPTY, TRUNCATED, MARKER_LEAK, PARSE_FAIL), catching 9 defects that ran cleanly but were wrong, with 63 of 70 pre-registered gates passed and 89 tests</li>
             </ul>
         </div>
 
         <div class="external-links">
             <h2>Project Resources</h2>
-            <a href="https://github.com/mjsushanth/Multi_Agent_LLM_Debater/blob/main/README.md" target="_blank">→ GitHub Repository</a>
+            <a href="https://github.com/mjsushanth/Multi_Agent_LLM_Debater/blob/main/README.md" target="_blank">→ Multi_Agent_LLM_Debater Repository</a>
+            <a href="https://github.com/mjsushanth/mlx-debate-lab" target="_blank">→ mlx-debate-lab Repository</a>
+            <a href="https://github.com/mjsushanth/mlx-debate-lab/blob/main/docs/LANDMINES.md" target="_blank">→ The Nine Defects (LANDMINES.md)</a>
         </div>
     </div>
 </body>

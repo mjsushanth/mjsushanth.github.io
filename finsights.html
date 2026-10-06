@@ -135,28 +135,26 @@
         <h1>FinSights: Production-Grade Financial Intelligence System</h1>
         
         <div class="project-overview">
-            Hybrid dual-path RAG system combining structured SQL queries (DuckDB dimension tables) with semantic vector retrieval. Processes 72M→1M sentences via stratified sampling with temporal weighting across regulatory eras, achieving $0.017/query cost with no managed database overhead.
+            Hybrid RAG system over SEC 10-K filings that pairs structured KPI lookup with semantic retrieval across 614,647 sentence embeddings (25 companies, 2006-2025), returning answers cited to exact filing sentences. Runs live on AWS Fargate at $0.014/query with a $0.29/month idle floor and no managed database.
         </div>
 
         <div class="highlights">
             <ul>
-                <li><strong>Data Engineering Pipeline:</strong> 30+ DuckDB SQL scripts implementing weighted multi-objective scoring, fuzzy entity matching, and conditional temporal stratification across company-year-section dimensions</li>
-                
-                <li><strong>Advanced RAG Architecture:</strong> Sentence-level embeddings with multi-query expansion, window-hopping retrieval (±3 context sentences), and citation provenance via document headers for exact source traceability</li>
-                
-                <li><strong>Evaluation Framework:</strong> Three-tier validation with deterministic gold sets (P1/P2 anchor tests achieving 82% Hit@5, P3 business-realistic suite), BERTScore 0.826 semantic alignment, and bias detection across section/year/filter regime slices</li>
-                
-                <li><strong>Production Infrastructure:</strong> AWS S3 Vectors, Bedrock LLM synthesis, Polars/Parquet logging pipeline, and serverless-ready three-tier architecture (FastAPI + Streamlit + ML orchestrator)</li>
-                
-                <li><strong>Cost Optimization:</strong> Approximated $0.05/month infrastructure, instead of expensive, managed vector databases, achieved through stratified sampling, metadata filter pushdown (50% query cost savings), and S3-native storage patterns</li>
+                <li><strong>Two-Supply-Line Architecture:</strong> A shared entity adapter (CIK, name, ticker, fuzzy fallback) feeds a structured KPI lookup (9,260 facts, 97 metrics) and semantic retrieval, converging into one Bedrock Claude Haiku synthesis cited to filing sentences</li>
 
-                <li><strong>Corpus Re-Embedding at Scale:</strong> Regrew the vector corpus 3x — 203K to 614K sentence embeddings across 25 companies and 20 report years — split across two embedding providers to dodge a token quota, verified equivalent before merging, for $2.21 against a $5 estimate</li>
+                <li><strong>Corpus Pipeline:</strong> Scored company selection and stratified sampling of 71M sentences in 47s, six-stage incremental EDGAR ingestion, and a re-embed from 203K to 614K vectors across two providers with checkpoint/resume, 1,850 vectors/min, $2.21 total</li>
 
-                <li><strong>Latency Instrumentation:</strong> Split the retrieval timer to find the real bottleneck, disproving a documented assumption that S3 was 90% of latency once variant generation measured slower (1,990ms vs 1,465ms); added response streaming to cut time-to-first-byte to 4.3ms and killed one planned optimization once the data didn't support it</li>
+                <li><strong>Retrieval Design:</strong> Haiku generates 2-4 query rephrasings at $0.0001, filtered and global searches merge by lowest distance, hits expand by ±3 sentences, and metadata pushdown cuts query cost 50% with provenance kept on every hit</li>
 
-                <li><strong>Production Deployment on AWS Fargate:</strong> Built the deployment pipeline for ARM64 Fargate, fixed the defect that broke the prior deployment, added one-command setup for a brand-new AWS account, and removed the load balancer and NAT gateway from the path — verified live at $0.014/query, scaling to zero cost when idle</li>
+                <li><strong>Evaluation:</strong> Three gold tiers plus a 31-question business suite score 82% Hit@5 and 0.826 BERTScore; reranking cut cost 32% and context 61% but was rejected after 5 of 10 held-out answers got worse</li>
 
-                <li><strong>Measured Cost Economics:</strong> Replaced a guessed cost model with real AWS billing rates — $0.06/GB-month storage and $0.20/GB ingest for the vector store, $0.03238/vCPU-hour for compute — landing on a $0.29/month idle floor for the whole system, and retiring the old claim that ingest was free</li>
+                <li><strong>Query-Bridge Stream Orchestrator:</strong> A background worker thread pushes stage and token events into a queue that the endpoint drains as server-sent events, so first byte arrives in 4.3ms against 8.96s total processing</li>
+
+                <li><strong>Latency Profiling and Caching:</strong> Splitting the retrieval timer showed variant generation (1,990ms) outweighing S3 retrieval (1,465ms), so planned concurrent retrieval was dropped; caching components cut a 1,165ms cold build to 0ms and a threadpool handler keeps /health responsive mid-query</li>
+
+                <li><strong>Fargate Deployment:</strong> ARM64 task sized to 1 vCPU / 3 GB from a measured 1,220 MiB peak, backend and frontend sharing one task with no load balancer or NAT gateway, and one-command up and destroy from the repository alone</li>
+
+                <li><strong>Measured Cost Economics:</strong> Real AWS rates ($0.06/GB-month vector storage, $0.20/GB ingest, $0.03238/vCPU-hour) give a $0.29/month idle floor and $3.80 to $12.40 for a light to heavy month, with Bedrock inference the whole spread</li>
             </ul>
         </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text-to-Pose Diffusion - Joel Markapudi</title>
+    <title>Text-to-Pose - Joel Markapudi</title>
     <style>
         * {
             margin: 0;
@@ -132,23 +132,31 @@
     <div class="container">
         <a href="index.html" class="back-link">← Back to Portfolio</a>
         
-        <h1>Text-to-Pose Diffusion: CLIP-Conditioned 3D Pose Synthesis</h1>
+        <h1>Text-to-Pose: CLIP-Conditioned Diffusion for 3D Human Pose</h1>
         
         <div class="project-overview">
-            Cross-modal diffusion model that maps free-form text into 3D human poses, integrating CLIP semantics with a UNet-based diffusion backbone. Focuses on anatomically consistent skeletons, kinematic chain reasoning, and pose–text alignment rather than pretty images, built in PyTorch with CLIP as the semantic encoder.
+            Text-to-pose generation on HumanML3D: a CLIP-conditioned diffusion model that turns captions into 3D human skeletons, paired with a rigorous evaluation layer of retrieval evaluators and conditioning analysis. Built in PyTorch around a 22-joint, 66-dimensional pose representation.
         </div>
 
         <div class="highlights">
             <ul>
-                <li><strong>Cross-Modal Architecture:</strong> Hybrid CNN–Transformer UNet where CLIP text embeddings are projected into pose-space and injected via cross-attention at multiple resolution levels, enabling the model to condition on high-level actions (e.g., “running”, “reaching”) and finer body-part cues simultaneously.</li>
+                <li><strong>Data and Task Design:</strong> HumanML3D motion reduced to 66-D static poses, k-means clustering with 8-cluster balanced sampling to avoid 49.6% cluster dominance, and captions cut to the first action with POS tags</li>
 
-                <li><strong>Specialized Cross-Attention:</strong> Hierarchical semantic conditioning that routes different aspects of the text into different spatial scales: coarse layers focus on global posture and balance, while mid/fine layers emphasize limb orientation, hand/foot placement, and spatial relationships between joints.</li>
+                <li><strong>Cross-Modal Architecture:</strong> Hybrid CNN–Transformer UNet where frozen CLIP ViT-B/32 embeddings are projected 512D to 256D and injected by cross-attention at several scales, coarse layers for global posture and fine layers for limb placement</li>
 
-                <li><strong>Biomechanics & Physical Plausibility:</strong> Enforces bone-length consistency, joint-limit style constraints, and N-joint kinematic chain validation (pelvis–spine–extremities) with auxiliary anatomical losses and center-of-mass sanity checks to down-weight physically implausible skeletons.</li>
+                <li><strong>Training and Guidance:</strong> 1000-step DDPM with squared-cosine noise schedule, mixed precision and OneCycleLR, and dual-pass classifier-free guidance ramped from 2.0 to 7.0, with ablations over guidance strength and conditioning dropout</li>
 
-                <li><strong>Guidance & Training Dynamics:</strong> Uses dual-pass classifier-free guidance (CFG) to trade off diversity vs. adherence to the text prompt, with ablations over guidance strength, noise schedules, and conditioning dropout to study stability, mode-collapse behavior, and semantic fidelity.</li>
+                <li><strong>Anatomical Constraints:</strong> Bone-length consistency and pelvis–spine–extremity kinematic chains enforced as auxiliary anatomical losses, computed in denormalized metric space, with a final anatomy loss of 0.07</li>
 
-                <li><strong>Tooling & Evaluation:</strong> Includes dataset EDA and joint-mapping utilities, pose visualizers for qualitative inspection, and experiment scaffolding to compare baselines (unconditioned / weak conditioning) against the full CLIP-conditioned model under identical sampling budgets.</li>
+                <li><strong>Pose Decoding:</strong> Traced a pose-decode bug to the wrong 66 of 263 features per frame and fixed it, restoring constant bone lengths across frames</li>
+
+                <li><strong>Evaluation Harness:</strong> Text-motion retrieval evaluator reproduces the published R-Precision top-3 of 0.797 on real motions across five full-split runs, cross-checked by a second independent evaluator</li>
+
+                <li><strong>Conditioning Findings:</strong> CLIP separates left from right poorly (Cohen's d 0.995, 57.6% of captions spatial) yet 4,640 test captions show no spatial gap; truncating captions cuts R-Precision from 0.8013 to 0.6563</li>
+
+                <li><strong>Small-Budget Results:</strong> A 17.9M-parameter MDM trained for 3,000 steps scores R-Precision top-3 of 0.2969, 3.17x chance on held-out captions it never trained on</li>
+
+                <li><strong>Engineering:</strong> Training step cut from 2.284 to 0.231 s/step (9.9x), with EDA and joint-mapping tools, pose visualizers, and an interactive caption-retrieval demo at about 10s per motion</li>
             </ul>
         </div>
 
@@ -156,7 +164,9 @@
             <h2>Project Resources</h2>
             <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/DESIGN_README.md" target="_blank">→ Design Documentation</a>
             <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation/blob/main/RESEARCH_README.md" target="_blank">→ Research Report</a>
-            <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation" target="_blank">→ GitHub Repository</a>
+            <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation" target="_blank">→ Diffusion Model Repository</a>
+            <a href="https://github.com/mjsushanth/T2P-motion-gen-redo/blob/main/RESULTS.md" target="_blank">→ Evaluation Findings</a>
+            <a href="https://github.com/mjsushanth/T2P-motion-gen-redo" target="_blank">→ Evaluation Repository</a>
         </div>
     </div>
 </body>
