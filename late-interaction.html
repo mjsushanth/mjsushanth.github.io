@@ -117,6 +117,42 @@
             text-decoration: underline;
         }
 
+        .key-facts {
+            margin-top: 30px;
+            padding-top: 18px;
+            border-top: 1px dashed #d5d5d0;
+            font-size: 0.88rem;
+            color: #777;
+            line-height: 1.65;
+        }
+
+        .key-facts-label {
+            font-style: italic;
+            text-transform: lowercase;
+            letter-spacing: 0.04em;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .key-facts ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .key-facts li {
+            margin-bottom: 4px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .key-facts li:before {
+            content: "·";
+            position: absolute;
+            left: 2px;
+            color: #aaa;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 35px 20px;
@@ -135,22 +171,25 @@
         <h1>Vision-Language Late-Interaction Retrieval with LoRA</h1>
         
         <div class="project-overview">
-            Implemented ColBERT-style late-interaction retrieval system combining ViT patch embeddings with CLIP text encodings, trained via parameter-efficient LoRA fine-tuning on 1500 Flickr8k image-caption pairs. Achieved 100% retrieval accuracy through MaxSim token→patch alignment with symmetric InfoNCE contrastive loss, demonstrating learned cross-modal semantic geometry.
+            A ColBERT-style late-interaction retrieval system that pairs ViT patch tokens with CLIP text tokens through a learned projection, fine-tuned with LoRA on 1,500 Flickr8k image-caption pairs. Query tokens are scored against image patches with MaxSim and trained with a symmetric InfoNCE loss.
         </div>
-
         <div class="highlights">
             <ul>
-                <li><strong>Multi-Vector Architecture:</strong> Built late-interaction system using ViT-base/patch16 encoder producing 196 spatial patch tokens (768-d) from 224×224 images, paired with CLIP text encoder generating per-token embeddings, unified through learned projection head mapping 512-d CLIP space to 768-d ViT embedding space for geometrically meaningful cross-modal comparisons</li>
-                
-                <li><strong>MaxSim Retrieval Mechanism:</strong> Implemented ColBERT-style scoring computing per-token max-patch similarity with full [B×B] retrieval matrix generation, enabling fine-grained textual grounding to specific image regions rather than global pooled embeddings. Each query token independently aligns to most similar image patch, producing interpretable attention heatmaps for spatial localization</li>
-                
-                <li><strong>Parameter-Efficient Fine-Tuning:</strong> Applied LoRA adapters (rank=16, α=32, dropout=0.05) to ViT attention layers (qkv and proj modules), training only 1.3M of 87M total parameters (1.05% trainable). Preserved pretrained ViT spatial understanding while adapting patch representations toward CLIP text embedding manifold through low-rank weight perturbations</li>
-                
-                <li><strong>Contrastive Training Pipeline:</strong> Trained with symmetric InfoNCE loss over 30 epochs using AdamW optimizer (lr=3e-5, weight_decay=1e-2), ReduceLROnPlateau scheduler (patience=3), gradient clipping (max_norm=1.0), and early stopping (patience=6). Achieved 38% loss reduction from 0.858 (near-random log(8)≈2.08 baseline) to 0.534, demonstrating strong alignment convergence</li>
-                
-                <li><strong>Retrieval Validation:</strong> Evaluated on 8-sample test batches achieving perfect diagonal dominance (100% caption→image retrieval accuracy), with score matrices showing correct pairs consistently scoring 0.20-0.27 while mismatches scored below 0.15. Validated that model learned semantic correspondences (e.g., "dog" captions correctly distinguishing between multiple dog images based on contextual differences)</li>
-                
-                <li><strong>Interpretability Analysis:</strong> Generated token→patch MaxSim heatmaps visualizing spatial attention (e.g., "dog" token activating on dog regions, "sunlight" on bright areas), and t-SNE embeddings of pooled representations showing distinct image/text clusters due to late-interaction preserving modality-specific structure while enabling fine-grained cross-modal alignment through MaxSim rather than global embedding fusion</li>
+                <li><strong>Multi-Vector Architecture:</strong> Pairs 196 ViT-base/patch16 patch tokens per image with per-token CLIP text embeddings through a learned 512-d to 768-d projection. MaxSim scores each query token against its best-matching patch, tying words to image regions.</li>
+                <li><strong>Parameter-Efficient Fine-Tuning:</strong> LoRA adapters on the ViT attention layers train only 1.3M of 87M parameters, keeping the pretrained spatial understanding while shifting patch features toward the CLIP text space.</li>
+                <li><strong>Contrastive Training:</strong> Trained with symmetric InfoNCE over the full batch-by-batch similarity matrix, cutting the loss by 38% (0.858 to 0.534).</li>
+                <li><strong>Interpretability:</strong> Token-to-patch MaxSim heatmaps show where each word looks, such as "dog" lighting up dog regions and "sunlight" bright areas. t-SNE of the pooled embeddings shows distinct image and text clusters.</li>
+            </ul>
+        </div>
+        <div class="key-facts">
+            <p class="key-facts-label">technical details</p>
+            <ul>
+                <li>Images: 224x224 input split into 196 patch tokens of 768-d (ViT-base/patch16)</li>
+                <li>Projection: CLIP text space 512-d mapped to ViT space 768-d</li>
+                <li>LoRA: rank 16, alpha 32, dropout 0.05 on ViT qkv and proj modules, 1.3M of 87M parameters trainable (1.49%)</li>
+                <li>Training: 30 epochs, AdamW (lr 3e-5, weight decay 1e-2), ReduceLROnPlateau (patience 3), gradient clipping at 1.0, early stopping (patience 6)</li>
+                <li>Loss: symmetric InfoNCE 0.858 to 0.534, against a random baseline of log(8) ≈ 2.08</li>
+                <li>Score separation on 8-sample test batches: matched pairs 0.20 to 0.27, mismatches below 0.15</li>
             </ul>
         </div>
 

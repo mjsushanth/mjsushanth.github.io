@@ -118,7 +118,7 @@
         
         <h1>Financial Machine Learning</h1>
         <div class="role-info">AI/ML Engineer • Innova Solutions</div>
-        <div class="date-range">May 2022 – November 2023</div>
+        <div class="date-range">May 2022 - November 2023</div>
 
         <div class="project-overview">
             Built production ML for finance and operations at Innova Solutions, covering attrition, collections, payment timing, rate guidance and anomaly detection. Models were developed in Python with XGBoost, scikit-learn, PyTorch and Optuna on governed, point-in-time datasets.
@@ -126,19 +126,15 @@
 
         <div class="highlights">
             <ul>
-                <li><strong>Governed ML Pipelines:</strong> Designed and validated ML pipelines for assignment attrition, AR/UBR collections, invoice payment timing and financial risk, with point-in-time features, leakage controls, traceability, retraining and reliability checks built in</li>
+                <li><strong>Governed ML Pipelines:</strong> Designed and validated ML pipelines for assignment attrition, AR/UBR collections, invoice payment timing and financial risk, with point-in-time features, leakage controls, traceability and retraining checks built in.</li>
 
-                <li><strong>Attrition Hazard Model:</strong> Modeled assignment attrition as a discrete-time XGBoost hazard model, improving two-month AUC from 0.56 to 0.71 for redeployment planning</li>
+                <li><strong>Attrition Hazard Model and Calibration:</strong> Modeled assignment attrition as a discrete-time XGBoost hazard model, improving two-month AUC from 0.56 to 0.71 for redeployment planning. Isotonic calibration makes the scores usable as probability estimates for redeployment analysis, beyond ranking.</li>
 
-                <li><strong>Probability Calibration:</strong> Applied isotonic calibration so attrition scores behave as usable probability estimates, supporting redeployment analysis instead of ranking alone</li>
+                <li><strong>Rate and Margin Guidance:</strong> Developed an XGBoost quantile regression for rate and margin guidance, cutting bill-rate error from $6.20/hr to $3.65/hr. Coverage was 81.2% against an 80% prediction-interval target.</li>
 
-                <li><strong>Rate and Margin Guidance:</strong> Developed an XGBoost quantile regression for rate and margin guidance, cutting bill-rate error from $6.20/hr to $3.65/hr at 81.2% coverage against an 80% prediction-interval target</li>
+                <li><strong>Late-Payment and Cash-Timing Models:</strong> Built a late-payment classifier for AR/UBR collections from monthly accounts-receivable snapshots, reducing late-payment probability error by 32%. A cash-timing hazard model on the same snapshots reaches 0.7958 AUC for invoice payment timing.</li>
 
-                <li><strong>Late-Payment Classifier:</strong> Built a collections late-payment classifier from monthly accounts-receivable snapshots for AR/UBR collections, reducing late-payment probability error by 32% with point-in-time features</li>
-
-                <li><strong>Cash-Timing Hazard Model:</strong> Built a cash-timing hazard model on the same monthly AR snapshots, reaching 0.7958 AUC for invoice payment timing</li>
-
-                <li><strong>Anomaly Detection:</strong> Developed anomaly detection on expenditure and assignment data using deterministic controls, Isolation Forest and autoencoders, surfacing 45,685 lines representing $37.17M in revenue against near-zero pay</li>
+                <li><strong>Anomaly Detection:</strong> Developed anomaly detection on expenditure and assignment data using deterministic controls, Isolation Forest and autoencoders. It surfaced 45,685 lines representing $37.17M in revenue against near-zero pay.</li>
             </ul>
         </div>
     </div>

@@ -117,6 +117,42 @@
             text-decoration: underline;
         }
 
+        .key-facts {
+            margin-top: 30px;
+            padding-top: 18px;
+            border-top: 1px dashed #d5d5d0;
+            font-size: 0.88rem;
+            color: #777;
+            line-height: 1.65;
+        }
+
+        .key-facts-label {
+            font-style: italic;
+            text-transform: lowercase;
+            letter-spacing: 0.04em;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .key-facts ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .key-facts li {
+            margin-bottom: 4px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .key-facts li:before {
+            content: "·";
+            position: absolute;
+            left: 2px;
+            color: #aaa;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 35px 20px;
@@ -135,32 +171,35 @@
         <h1>SocrAItic Circle: Multi-Agent LLM Debate & Evaluation</h1>
 
         <div class="project-overview">
-            A multi-agent LLM debate framework with structured preparation, rebuttal and evaluation phases, scored by theory-informed judge modules that improved argument quality by 37% on logical consistency, 16% on factual accuracy, 19% on rhetorical effectiveness and 44% on strategic merit. It was then rebuilt as a fully local LangGraph and MCP system with hybrid-retrieval evidence grounding and failure-mode instrumentation that documented nine silent defects.
+            SocrAItic Circle is a multi-agent LLM debate framework where agents prepare, rebut, and are scored by judge modules built on argumentation theory. It was later rebuilt as a fully local LangGraph and MCP system, with hybrid-retrieval evidence grounding and failure-mode instrumentation that caught nine silent defects.
         </div>
-
         <div class="highlights">
             <ul>
-                <li><strong>Adversarial Preparation:</strong> An invisible preparation phase lets agents check evidence, map arguments and anticipate weaknesses before visible rounds, backed by persistent memory that mirrors how human debaters research</li>
-
-                <li><strong>Seven-Dimension Judges:</strong> Judge modules grounded in Toulmin's Model, Pragma-Dialectical Theory and the Elaboration Likelihood Model score seven weighted dimensions, from logical consistency (0.25) down to audience engagement (0.05)</li>
-
-                <li><strong>YAML Orchestration:</strong> Prompts and phase guidance live in YAML, separate from code, so theoretical frameworks can be swapped without code changes, giving 15-20x faster iteration</li>
-
-                <li><strong>Multi-Phase Debate Flow:</strong> Preparation, targeted adversarial rebuttal and meta-consensus evaluation, with the judges' diverse perspectives aggregated through weighted multi-dimensional scoring</li>
-
-                <li><strong>Ollama Local Deployment:</strong> Heterogeneous local models (Mixtral, DeepSeek R1, Phi4, Llama 3.1) with hierarchical storage for debate histories, experiment configs and prompt versions</li>
+                <li><strong>Adversarial Preparation:</strong> An invisible preparation phase lets agents check evidence, map arguments and anticipate weaknesses before the visible rounds, with persistent memory that mirrors how human debaters research.</li>
+                <li><strong>Seven-Dimension Judges:</strong> Judge modules grounded in Toulmin's Model, Pragma-Dialectical Theory and the Elaboration Likelihood Model score seven weighted dimensions. Argument quality improved across the board, most on strategic merit (44%) and logical consistency (37%).</li>
+                <li><strong>YAML Orchestration:</strong> Prompts and phase guidance live in YAML, separate from code, so theoretical frameworks can be swapped without code changes. This gave 15-20x faster iteration.</li>
+                <li><strong>Multi-Phase Debate Flow:</strong> Debates run through preparation, targeted adversarial rebuttal and meta-consensus evaluation, with the judges' perspectives combined by weighted multi-dimensional scoring.</li>
+                <li><strong>Ollama Local Deployment:</strong> Runs heterogeneous local models (Mixtral, DeepSeek R1, Phi4, Llama 3.1), with hierarchical storage for debate histories, experiment configs and prompt versions.</li>
             </ul>
-
             <ul style="margin-top: 30px;">
-                <li><strong>Graph Orchestration:</strong> LangGraph state machine with 13 nodes and gate, cycle and Send fan-out patterns feeding 16 parallel judge tasks, a derived recursion limit (72 for 5 rounds) and checkpoint resume proven against a forced crash</li>
-
-                <li><strong>MCP Protocol Layer:</strong> Two servers exposing 9 tools and 7 resources, with stdio and HTTP transport equivalence proven live, HTTP overhead measured at 1.5x and a cold stdio subprocess at 194x</li>
-
-                <li><strong>MLX Memory Residency:</strong> Debaters (17.2 GB) and judges (16.6 GB) are never co-resident, fitting ~34 GB of weights in 24 GB unified memory, while prompt caching (-5.2% TTFT) and batch_generate (3 failures across 2 architectures) were measured and rejected</li>
-
-                <li><strong>Hybrid Evidence Retrieval:</strong> BM25, dense embeddings and RRF fusion over 14,195 documents, compressing ~8,262 retrieved tokens to ~150 per debater, where hybrid retrieval lost to plain BM25 (0.6334 vs 0.6413 nDCG@10)</li>
-
-                <li><strong>Failure-Mode Instrumentation:</strong> Every generation is classified at the model boundary (EMPTY, TRUNCATED, MARKER_LEAK, PARSE_FAIL), catching 9 defects that ran cleanly but were wrong, with 63 of 70 pre-registered gates passed and 89 tests</li>
+                <li><strong>Graph Orchestration:</strong> A LangGraph state machine with 13 nodes feeds 16 parallel judge tasks through gate, cycle and Send fan-out patterns. Checkpoint resume was proven against a forced crash.</li>
+                <li><strong>MCP Protocol Layer:</strong> Two MCP servers expose 9 tools and 7 resources, with stdio and HTTP transport equivalence proven live. HTTP overhead measured about 1.5x, against 194x for a cold stdio subprocess.</li>
+                <li><strong>MLX Memory Residency:</strong> Debaters and judges are never loaded at the same time, so about 34 GB of model weights fit in 24 GB of memory. Prompt caching and batch_generate were measured and rejected.</li>
+                <li><strong>Hybrid Evidence Retrieval:</strong> BM25, dense embeddings and RRF fusion over 14,195 documents compress about 8,262 retrieved tokens to about 150 per debater. On nDCG@10, hybrid retrieval lost narrowly to plain BM25 (0.6334 vs 0.6413).</li>
+                <li><strong>Failure-Mode Instrumentation:</strong> Every generation is classified at the model boundary (EMPTY, TRUNCATED, MARKER_LEAK, PARSE_FAIL), which caught 9 defects that ran cleanly but produced wrong output. 63 of 70 pre-registered gates passed.</li>
+            </ul>
+        </div>
+        <div class="key-facts">
+            <p class="key-facts-label">technical details</p>
+            <ul>
+                <li>Judge weights: logical consistency 0.25, factual accuracy 0.20, rhetorical effectiveness 0.15, strategic merit 0.15, ethical conduct 0.10, belief-shift potential 0.10, audience engagement 0.05</li>
+                <li>Argument quality gains: strategic merit 44%, logical consistency 37%, rhetorical effectiveness 19%, factual accuracy 16%</li>
+                <li>Model residency: debaters 17.2 GB and judges 16.6 GB, never loaded together</li>
+                <li>Rejected optimizations: prompt caching (-5.2% TTFT) and batch_generate (3 failures across 2 architectures)</li>
+                <li>LangGraph recursion limit derived in code: 72 for a 5-round debate</li>
+                <li>Anomaly classes: EMPTY, TRUNCATED, MARKER_LEAK, PARSE_FAIL, DIMENSION_MISMATCH</li>
+                <li>Validity gates: temperature-0 paired ablations, with a run voided on identical transcript hashes across arms or zero citations with evidence enabled</li>
+                <li>Codebase: 8,481 lines, 89 tests, ruff-clean, 4 executed notebooks, 15 documentation guides, 26-entry decision log</li>
             </ul>
         </div>
 

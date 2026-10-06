@@ -135,23 +135,17 @@
         <h1>Protein Structure Prediction</h1>
         
         <div class="project-overview">
-            Implemented Hidden Markov Models, Conditional Random Fields, and BiLSTM architectures for secondary structure prediction on CB513 benchmark (514 non-homologous proteins). CRF model achieved 67% accuracy through specialized β-sheet detection features and position-specific evolutionary information.
+            Implemented Hidden Markov Models, Conditional Random Fields, and BiLSTM architectures for secondary structure prediction on the CB513 benchmark (514 non-homologous proteins). The CRF model achieved 67% accuracy through specialized β-sheet detection features and position-specific evolutionary information.
         </div>
-
         <div class="highlights">
             <ul>
-                <li><strong>Multi-Architecture Comparison:</strong> Built and evaluated HMM with mixture-of-Gaussians emissions, discriminative CRF with enhanced feature engineering, SVM with 533-dimensional PSSM-based features (74.91% accuracy), and BiLSTM with bidirectional context encoding</li>
-                
-                <li><strong>Feature Engineering:</strong> Designed 39,900-dimensional feature space incorporating PSSM evolutionary conservation scores, position-specific amino acid profiles, and 22 specialized β-sheet interaction features capturing N→N+3 residue dependencies</li>
-                
-                <li><strong>CRF Implementation:</strong> Achieved balanced three-state classification (helix/sheet/coil distributions: 0.364/0.289/0.347) through discriminative optimization with biologically meaningful structural transition modeling without explicit enforcement mechanisms</li>
-                
-                <li><strong>Architectural Analysis:</strong> Documented fundamental limitations of generative HMM approach (state collapse despite adaptive balancing) versus discriminative CRF success, demonstrating that long-range structural dependencies require feature-driven rather than probabilistic independence assumptions</li>
-                
-                <li><strong>Evaluation Framework:</strong> Comprehensive metrics including structure-specific F1 scores (SVM helix F1: 0.9522), confusion matrix analysis, and comparative study revealing strong correlation between evolutionary conservation patterns and structural predictability across 514-sequence benchmark</li>
+                <li><strong>Multi-Architecture Comparison:</strong> Built and evaluated an HMM with mixture-of-Gaussians emissions, a discriminative CRF with enhanced feature engineering, an SVM on 533-dimensional PSSM-based features (74.91% accuracy), and a BiLSTM with bidirectional context encoding.</li>
+                <li><strong>Feature Engineering:</strong> Designed a 39,900-dimensional feature space from PSSM conservation scores, position-specific amino acid profiles, and 22 specialized β-sheet features capturing N→N+3 residue dependencies.</li>
+                <li><strong>CRF Implementation:</strong> Achieved balanced three-state predictions (helix/sheet/coil: 0.364/0.289/0.347) through discriminative optimization, with biologically meaningful structural transitions emerging without explicit enforcement.</li>
+                <li><strong>Architectural Analysis:</strong> Documented the limits of the generative HMM (state collapse despite adaptive balancing) against the discriminative CRF, which handled long-range structural dependencies through features.</li>
+                <li><strong>Evaluation Framework:</strong> Evaluated with structure-specific F1 scores (SVM helix F1: 0.9522) and confusion matrices. The comparison showed a strong link between evolutionary conservation patterns and structural predictability across the 514-sequence benchmark.</li>
             </ul>
         </div>
-
         <div class="external-links">
             <h2>Project Resources</h2>
             <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction/blob/main/Report%20-%20Protein%20Struct%20Prediction%20HMM%2C%20CRF%2C%20LSTM%2C%20ML.pdf" target="_blank">→ Full Report (PDF)</a>

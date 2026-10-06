@@ -135,26 +135,26 @@
         <h1>OSCD Sentinel-2 Satellite Change Detection</h1>
 
         <div class="project-overview">
-            Satellite change detection built from first principles on Sentinel-2 bitemporal imagery, pairing classical baselines with a compact Siamese U-Net. Every threshold is chosen on validation data alone, and every claim is labeled VERIFIED or UNVERIFIED — including four early claims that were later corrected on the record.
+            A side project I pursued in depth to learn remote sensing from first principles: change detection on Sentinel-2 bitemporal imagery, pairing classical baselines with a compact Siamese U-Net. Every threshold is chosen on validation data alone, and every claim is labeled VERIFIED or UNVERIFIED, including four early claims that were later corrected on the record.
         </div>
 
         <div class="highlights">
             <ul>
-                <li><strong>Dataset Provenance & Licensing:</strong> Sourced OSCD and LEVIR-CD directly from their original providers, with each dataset's licence tracked explicitly — LEVIR-CD is characterized but kept out of training to respect its stricter terms</li>
+                <li><strong>Dataset Provenance &amp; Licensing:</strong> Sourced OSCD and LEVIR-CD directly from their original providers and tracked each dataset's licence explicitly. LEVIR-CD is characterized but kept out of training to respect its stricter terms.</li>
 
-                <li><strong>Classical Detection Baselines, Built From Scratch:</strong> Absolute-difference, Change Vector Analysis, and PCA-K-means detectors plus spectral-index variants, establishing an honest classical floor of F1 0.237 before any learned model enters the comparison</li>
+                <li><strong>Classical Detection Baselines, Built From Scratch:</strong> Built absolute-difference, Change Vector Analysis and PCA-K-means detectors, plus spectral-index variants. They set a classical floor of F1 0.237 before any learned model enters the comparison.</li>
 
-                <li><strong>Learned Architecture on Laptop-Scale Hardware:</strong> A ~269k-parameter Siamese U-Net (shared encoder, absolute-difference fusion, weighted BCE + soft Dice loss) reaches mean F1 0.378 across 4 seeds on a single machine with no GPU cluster — about 1.6x the classical floor</li>
+                <li><strong>Learned Architecture on Laptop-Scale Hardware:</strong> A ~269k-parameter Siamese U-Net (shared encoder, absolute-difference fusion, weighted BCE plus soft Dice loss) reaches mean F1 0.378 across 4 seeds on a single machine with no GPU cluster. That is about 1.6x the classical floor.</li>
 
-                <li><strong>Threshold-Honest Evaluation Protocol:</strong> Thresholds are chosen on the validation split only, whole-image metrics are computed after stitching tiles back together, and results are reported per seed as a range (1.43x–1.71x) rather than one number</li>
+                <li><strong>Threshold-Honest Evaluation Protocol:</strong> Thresholds are chosen on the validation split only, and whole-image metrics are computed after stitching tiles back together. Results are reported per seed as a range (1.43x to 1.71x) rather than one number.</li>
 
-                <li><strong>Radiometric Nuisance Characterization:</strong> Found that brightness drift between image dates (roughly −654 to +609 DN) is as large as the real change signal — a label-free correction for it lifted classical mean AUC from 0.660 to 0.830 across six detectors</li>
+                <li><strong>Radiometric Nuisance Characterization:</strong> Found that brightness drift between image dates (roughly -654 to +609 DN) is as large as the real change signal. A label-free correction for it lifted classical mean AUC from 0.660 to 0.830 across six detectors.</li>
 
-                <li><strong>Statistical Power Analysis:</strong> Measured spatial autocorrelation of 24x–270x across tiles, showing the effective sample size is closer to 1,192 than the raw tile count — a check most computer-vision projects skip</li>
+                <li><strong>Statistical Power Analysis:</strong> Measured spatial autocorrelation of 24x to 270x across tiles, which puts the effective sample size closer to 1,192 than the raw tile count. Most computer-vision projects skip this check.</li>
 
-                <li><strong>Label-Free Quantification Program:</strong> Named the open problem correctly — calibrated, label-free change-rate prediction — and tested strategies from the quantification literature, including Median Sweep, against it</li>
+                <li><strong>Label-Free Quantification Program:</strong> Named the open problem as calibrated, label-free change-rate prediction, then tested strategies from the quantification literature against it, including Median Sweep.</li>
 
-                <li><strong>Adversarial Self-Verification:</strong> Four of the project's own claims were later overturned and corrected on the record, backed by 135 tests including 5 deliberately-failing tripwires that catch regressions</li>
+                <li><strong>Adversarial Self-Verification:</strong> Four of the project's own claims were later overturned and corrected on the record. The project is backed by 135 tests, including 5 deliberately failing tripwires that catch regressions.</li>
             </ul>
         </div>
 

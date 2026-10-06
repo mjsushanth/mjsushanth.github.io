@@ -278,7 +278,7 @@
             <p class="intro">
                 Machine learning and LLM engineering enthusiast completing an M.S. in Artificial Intelligence at Northeastern University (GPA 3.9),
                 with four years of experience as a Data Engineer building FP&A and operational reporting systems.
-                My work bridges production-grade data engineering with modern AI systems—RAG and <strong>multimodal retrieval</strong>,
+                My work bridges production-grade data engineering with modern AI systems, including RAG and <strong>multimodal retrieval</strong>,
                 multi-agent LLM orchestration with <strong>LangGraph and MCP</strong>, memory-constrained local inference on Apple Silicon, and computer vision
                 spanning <strong>text-to-pose diffusion</strong> and pose-aware multi-view scene analysis.
 
@@ -315,7 +315,7 @@
                 <div class="project-card" onclick="window.location.href='text-to-pose.html'">
                     <div class="project-card-title">Text-to-Pose: CLIP-Conditioned Diffusion for 3D Human Pose</div>
                     <div class="project-card-summary">
-                        CLIP-conditioned diffusion model that generates 3D human skeletons from captions, paired with a retrieval-based evaluation layer that reproduces a published R-Precision of 0.797 and a conditioning analysis of CLIP's left/right handling.
+                        CLIP-conditioned diffusion model that generates 3D human skeletons from captions. A retrieval evaluator reproduces the published R-Precision of 0.797, and a conditioning analysis looks at how CLIP handles left and right.
                     </div>
                     <div class="project-card-links">
                         <a href="https://github.com/mjsushanth/CLIP-Conditioned-Diffusion-T2Pose-Generation" target="_blank" onclick="event.stopPropagation();">Model Repository →</a>
@@ -326,7 +326,7 @@
                 <div class="project-card" onclick="window.location.href='socraitic.html'">
                     <div class="project-card-title">SocrAItic Circle: Multi-Agent LLM Debate & Evaluation</div>
                     <div class="project-card-summary">
-                        Multi-agent LLM debate framework with theory-grounded seven-dimension judging, rebuilt as a local LangGraph and MCP system with hybrid retrieval grounding and instrumentation that caught nine silent defects.
+                        Multi-agent LLM debate framework with judges built on argumentation theory, rebuilt as a local LangGraph and MCP system. Hybrid retrieval grounds the evidence, and failure-mode instrumentation caught nine silent defects.
                     </div>
                     <div class="project-card-links">
                         <a href="https://github.com/mjsushanth/Multi_Agent_LLM_Debater" target="_blank" onclick="event.stopPropagation();">Debater Repository →</a>
@@ -337,7 +337,7 @@
                 <div class="project-card" onclick="window.location.href='multiview-3d.html'">
                     <div class="project-card-title">Multi-View 3D Scene Analysis</div>
                     <div class="project-card-summary">
-                        10k+ LOC pipeline for multi-view scene reconstruction (scene, feature-track, and SfM analysis) with pose-guided filtering, occlusion handling, and RANSAC validation on ETH3D dataset.
+                        10k+ line pipeline for pose-guided multi-view feature correspondence on ETH3D, with RANSAC validation, occlusion-aware multi-view tracks and a COLMAP mapper integration.
                     </div>
                     <div class="project-card-links">
                         <a href="https://github.com/mjsushanth/MultiView_Image_Analysis_CS5330/blob/main/IMPLEMENTATION_README.md" target="_blank" onclick="event.stopPropagation();">Implementation →</a>
@@ -345,10 +345,20 @@
                     </div>
                 </div>
 
+                <div class="project-card" onclick="window.location.href='protein-prediction.html'">
+                    <div class="project-card-title">Protein Structure Prediction</div>
+                    <div class="project-card-summary">
+                        HMM, CRF and BiLSTM models for protein secondary structure prediction on the CB513 benchmark. The CRF reached 67% accuracy using evolutionary features and specialized β-sheet features.
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction/blob/main/Report%20-%20Protein%20Struct%20Prediction%20HMM%2C%20CRF%2C%20LSTM%2C%20ML.pdf" target="_blank" onclick="event.stopPropagation();">Report →</a>
+                    </div>
+                </div>
+
                 <div class="project-card" onclick="window.location.href='late-interaction.html'">
                     <div class="project-card-title">Vision-Language Late-Interaction Retrieval</div>
                     <div class="project-card-summary">
-                        ColBERT-style ViT+CLIP system with LoRA parameter-efficient fine-tuning. MaxSim token→patch alignment achieving 38% InfoNCE loss reduction and 100% retrieval accuracy on Flickr8k.
+                        ColBERT-style retrieval that pairs ViT patch tokens with CLIP text tokens through a learned projection, fine-tuned with LoRA on 1,500 Flickr8k pairs. MaxSim scoring with symmetric InfoNCE cut the training loss by 38%.
                     </div>
                     <div class="project-card-links">
                         <a href="https://github.com/mjsushanth/mlops-labs-portfolio/tree/main/Late_Interaction_MVR_PEFT_LoRA" target="_blank" onclick="event.stopPropagation();">Repository →</a>
@@ -356,20 +366,10 @@
                     </div>
                 </div>
 
-                <div class="project-card" onclick="window.location.href='protein-prediction.html'">
-                    <div class="project-card-title">Protein Structure Prediction</div>
-                    <div class="project-card-summary">
-                        Implemented HMM, CRF, and BiLSTM architectures for secondary structure prediction. CRF model achieved 67% accuracy on CB513 benchmark using evolutionary features.
-                    </div>
-                    <div class="project-card-links">
-                        <a href="https://github.com/mjsushanth/ML_Protein_Structure_Prediction/blob/main/Report%20-%20Protein%20Struct%20Prediction%20HMM%2C%20CRF%2C%20LSTM%2C%20ML.pdf" target="_blank" onclick="event.stopPropagation();">Report →</a>
-                    </div>
-                </div>
-
                 <div class="project-card" onclick="window.location.href='artist-classification.html'">
                     <div class="project-card-title">Artist Classification</div>
                     <div class="project-card-summary">
-                        Comparative study of SVM-SIFT-BoVW, CAEs, VAEs, and CNNs for artistic style classification. Classical SVM approach achieved 89% accuracy on 50-class dataset.
+                        Comparison of SVM-SIFT-BoVW, autoencoders and CNNs for artistic style classification across 50 artists. The classical SVM reached 89.2% accuracy, ahead of ResNet-50 and VGG-16.
                     </div>
                 </div>
             </div>
@@ -383,20 +383,20 @@
                 <div class="project-card" onclick="window.location.href='data-engineering.html'">
                     <div class="project-card-title">Data Platform & Analytics Engineering</div>
                     <div class="project-card-summary">
-                        Built the enterprise data warehouse (40+ star-schema tables), entity resolution at 88% accuracy across six systems, and 25+ Power BI dashboards delivering 300+ KPIs, saving 70+ hours a month and cutting deployment time 50% with CI/CD.
+                        Built the enterprise data warehouse (40+ star-schema tables) and entity resolution across six systems at 88% accuracy. Delivered 25+ Power BI dashboards with 300+ KPIs, saving 70+ hours a month, and cut deployment time 50% with CI/CD.
                     </div>
                     <div class="project-card-links">
-                        <span style="color: #666; font-size: 0.9rem;">Innova Solutions • Dec 2019 – Nov 2023</span>
+                        <span style="color: #666; font-size: 0.9rem;">Innova Solutions • Dec 2019 - Nov 2023</span>
                     </div>
                 </div>
 
                 <div class="project-card" onclick="window.location.href='financial-ml.html'">
                     <div class="project-card-title">Financial Machine Learning</div>
                     <div class="project-card-summary">
-                        Production ML for finance: an attrition hazard model lifting AUC from 0.56 to 0.71, quantile rate guidance, collections and payment-timing models, and anomaly detection that surfaced $37.17M in revenue against near-zero pay.
+                        Production ML for finance and operations: an attrition hazard model that lifted AUC from 0.56 to 0.71, rate guidance, collections and payment-timing models, and anomaly detection that surfaced $37.17M in revenue against near-zero pay.
                     </div>
                     <div class="project-card-links">
-                        <span style="color: #666; font-size: 0.9rem;">Innova Solutions • May 2022 – Nov 2023</span>
+                        <span style="color: #666; font-size: 0.9rem;">Innova Solutions • May 2022 - Nov 2023</span>
                     </div>
                 </div>
             </div>
@@ -413,7 +413,7 @@
                     <div class="mini-project">
                         <div class="mini-project-title">OSCD Sentinel-2 Satellite Change Detection</div>
                         <div class="mini-project-desc">
-                            Side project pursued in depth for learning: remote sensing from first principles, classical baselines vs a Siamese U-Net, reaching ~1.6x F1 over the classical floor.
+                            A side project pursued in depth for learning remote sensing from first principles. A Siamese U-Net is compared against classical baselines and reaches about 1.6x their F1.
                             <a href="satellite-change-detection.html" style="color: #4a90e2; text-decoration: none;"> → Project Page</a> |
                             <a href="https://github.com/mjsushanth/oscd-sentinel2-change-detection" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
                         </div>
@@ -422,7 +422,7 @@
                     <div class="mini-project">
                         <div class="mini-project-title">Airflow, Docker and Qdrant RAG Ingestion Lab</div>
                         <div class="mini-project-desc">
-                            Multi-service Docker Compose stack running a 5-task Airflow DAG into Qdrant, plus a parquet sharding pass that compressed 44GB of files into a 1.5GB, 71M-row table.
+                            A multi-service Docker Compose stack running a 5-task Airflow DAG into Qdrant, plus a parquet sharding pass that compressed 44GB of files into a 1.5GB, 71M-row table.
                             <a href="https://github.com/mjsushanth/mlops-labs-portfolio/tree/main/Airflow_Docker_VDB_Lab" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
                         </div>
                     </div>
@@ -430,7 +430,7 @@
                     <div class="mini-project">
                         <div class="mini-project-title">DNA Pattern Matching: EPMSPP and Ukkonen Suffix Trees</div>
                         <div class="mini-project-desc">
-                            Java implementations of EPMSPP and Ukkonen's suffix tree, benchmarked against KMP, Boyer-Moore, Rabin-Karp, and Aho-Corasick on DNA sequences up to 100M base pairs.
+                            Java implementations of EPMSPP and Ukkonen's suffix tree, benchmarked against KMP, Boyer-Moore, Rabin-Karp and Aho-Corasick on DNA sequences up to 100M base pairs.
                             <a href="https://github.com/mjsushanth/Pattern-Matching-With-EPMSPP-Ukkonen-Algorithms" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
                         </div>
                     </div>
@@ -438,7 +438,7 @@
                     <div class="mini-project">
                         <div class="mini-project-title">ML, DL and CV Learning Experiments</div>
                         <div class="mini-project-desc">
-                            Long-running practice repo with from-scratch Transformer reconstruction labs (encoder, decoder-only, encoder-decoder, ViT) in MLX and PyTorch, plus LangGraph agent fundamentals.
+                            A long-running practice repo with from-scratch Transformer reconstruction labs (encoder, decoder-only, encoder-decoder and ViT) in MLX and PyTorch, plus LangGraph agent fundamentals.
                             <a href="https://github.com/mjsushanth/ml-dl-cv-learning-exp" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
                         </div>
                     </div>
@@ -446,7 +446,7 @@
                     <div class="mini-project">
                         <div class="mini-project-title">ML-Serving with GitHub CI/CD and AWS Lambda</div>
                         <div class="mini-project-desc">
-                            End-to-end ML deployment workflow using GitHub Actions, AWS Lambda, and SAM Infrastructure for serverless model serving.
+                            An end-to-end ML deployment workflow that uses GitHub Actions, AWS Lambda and SAM for serverless model serving.
                             <a href="https://github.com/mjsushanth/mlops-labs-portfolio/tree/main/CICD_ML_Infr_Lambda" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
                         </div>
                     </div>
@@ -454,7 +454,7 @@
                     <div class="mini-project">
                         <div class="mini-project-title">Optuna and MLFlow with Synthetic Time-Series</div>
                         <div class="mini-project-desc">
-                            Hyperparameter optimization and experiment tracking using Optuna and MLFlow on synthetic time-series data.
+                            Hyperparameter optimization and experiment tracking with Optuna and MLflow on synthetic time-series data.
                             <a href="https://github.com/mjsushanth/mlops-labs-portfolio/tree/main/MLFlow_Synth_TimeSeries_Lab" target="_blank" style="color: #4a90e2; text-decoration: none;"> → Source Code</a>
                         </div>
                     </div>
